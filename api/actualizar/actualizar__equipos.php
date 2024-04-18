@@ -4,6 +4,12 @@ include("../../db/database.php");
 
 $conn = connection();
 
+if (!isset($_POST['id'])) {
+  echo "Falta el Id";
+  $conn->close();
+  return;
+}
+
 if (!isset($_POST['tipo'])) {
   echo "Falta el Tipo";
   $conn->close();
@@ -22,17 +28,19 @@ if (!isset($_POST['idSala'])) {
   return;
 }
 
+$id = $_POST['id'];
 $tipo = $_POST['tipo'];
 $idMarca = $_POST['idMarca'];
 $idSala = $_POST['idSala'];
 
-$query = "INSERT INTO `equipos` (`id`, `tipo`, `idMarca`, `idSala`) VALUES (NULL, '$tipo', '$idMarca', '$idSala');";
+$query = "UPDATE `equipos` SET `tipo` = '$tipo', `idMarca` = '$idMarca', `idSala` = '$idSala' WHERE `equipos`.`id` = $id;";
 
 try {
   $conn->query($query);
-  echo "Equipo Creado";
+
+  echo "Equipo $id Actualizado";
 } catch (\Throwable $th) {
-  echo "Error al crear el Equipo";
+  echo "Error al actualizar el Equipo";
 }
 
 $conn->close();
