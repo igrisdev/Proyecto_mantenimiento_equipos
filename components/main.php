@@ -169,7 +169,7 @@ include('./lib/objetoInfoTablas.php');
             const button = $(`#form__${tabla} button`)
 
             button.attr('id', `${item.id ?? item.cc}`)
-            button.attr('isUpdate', true)
+            button.attr('data-actualizar', true)
             button.html(`Actualizar ${capitalice(tabla)}`)
 
             inputs.each(function() {
@@ -186,14 +186,15 @@ include('./lib/objetoInfoTablas.php');
     })
   }
 
-  const updateDataAjax = (id, formData, inputs) => {
+  const updateDataAjax = (tabla, formData, inputs) => {
     $.ajax({
-      url: `/Proyecto_mantenimiento_equipos/api/actualizar/actualizar__sedes.php`,
+      url: `/Proyecto_mantenimiento_equipos/api/actualizar/actualizar__${tabla}.php`,
       data: formData,
       method: 'POST',
       success: (data) => {
+
         alert(data);
-        document.getElementById(`dialog__${id}`).close();
+        document.getElementById(`dialog__${tabla}`).close();
         inputs.each(function() {
           $(this).val('');
         });

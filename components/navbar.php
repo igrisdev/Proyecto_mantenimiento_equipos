@@ -73,19 +73,37 @@ include('./lib/objetoNabar.php');
     })
   }
 
-  const formSubmit = (id) => {
-    $(`#form__${id}`).submit((e) => {
+  const formSubmit = (tabla) => {
+    $(`#form__${tabla}`).submit((e) => {
       e.preventDefault();
-      const inputs = $(`#form__${id} input`);
+      const inputs = $(`#form__${tabla} input`);
+      const button = $(`#form__${tabla} button`);
 
-      document.getElementById(`form__${id}`)
+      isUpdate = button.attr('data-actualizar')
+      isId = button.attr('id')
 
-      const formData = {};
+      const formData = {}
+
+
+      if (isUpdate && isId) {
+
+        inputs.each(function() {
+          formData[$(this).attr('name')] = $(this).val();
+        })
+
+        formData['id'] = isId
+
+        updateDataAjax(tabla, formData, inputs)
+        return
+      }
+
+      document.getElementById(`form__${tabla}`)
+
       inputs.each(function() {
         formData[$(this).attr('name')] = $(this).val();
       });
 
-      createDataAjax(id, formData, inputs)
+      createDataAjax(tabla, formData, inputs)
     });
   }
 </script>
