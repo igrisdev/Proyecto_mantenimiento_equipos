@@ -124,6 +124,10 @@ include('./lib/objetoInfoTablas.php');
     })
   }
 
+  const capitalice = (text) => {
+    return text.charAt(0).toUpperCase() + text.slice(1);
+  }
+
   const getDataAjax = (tabla) => {
     let element
     $.ajax({
@@ -156,15 +160,17 @@ include('./lib/objetoInfoTablas.php');
 
         res.map(item => {
           $(`#eliminar__${tabla}-${item.id ?? item.cc}`).on('click', () => {
-            deleteDataAjax(id, item.id ?? item.cc);
+            deleteDataAjax(tabla, item.id ?? item.cc);
           })
           $(`#actualizar__${tabla}-${item.id ?? item.cc}`).on('click', () => {
             document.getElementById(`dialog__${tabla}`).showModal();
 
             const inputs = $(`#form__${tabla} input`)
             const button = $(`#form__${tabla} button`)
+
             button.attr('id', `${item.id ?? item.cc}`)
             button.attr('isUpdate', true)
+            button.html(`Actualizar ${capitalice(tabla)}`)
 
             inputs.each(function() {
               if ($(this).attr('name') in item) {
