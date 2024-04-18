@@ -4,6 +4,12 @@ include("../../db/database.php");
 
 $conn = connection();
 
+if (!isset($_POST['id'])) {
+  echo "Falta el Id";
+  $conn->close();
+  return;
+}
+
 if (!isset($_POST['tipo_mantenimiento'])) {
   echo "Falta el Tipo De Mantenimiento";
   $conn->close();
@@ -34,20 +40,22 @@ if (!isset($_POST['quienCC'])) {
   return;
 }
 
+$id = $_POST['id'];
 $tipo_mantenimiento = $_POST['tipo_mantenimiento'];
 $problema = $_POST['problema'];
 $descripcion = $_POST['descripcion'];
 $idEquipo = $_POST['idEquipo'];
 $quienCC = $_POST['quienCC'];
 
-$query = "INSERT INTO `mantenimientos` (`id`, `tipo_mantenimiento`, `problema`, `descripcion`, `idEquipo`, `quienCC`) VALUES (NULL, '$tipo_mantenimiento', '$problema', '$descripcion', '$idEquipo', '$quienCC');";
+// $query = "INSERT INTO `mantenimientos` (`id`, `tipo_mantenimiento`, `problema`, `descripcion`, `idEquipo`, `quienCC`) VALUES (NULL, '$tipo_mantenimiento', '$problema', '$descripcion', '$idEquipo', '$quienCC');";
+
+$query = "UPDATE `mantenimientos` SET `tipo_mantenimiento`='$tipo_mantenimiento',`problema`='$problema',`descripcion`='$descripcion',`idEquipo`='$idEquipo', `quienCC`='$quienCC' WHERE `id`=$id";
 
 try {
   $conn->query($query);
-  echo "Mantenimiento Creado";
-  // } catch (\Throwable $th) {
-} catch (mysqli_sql_exception $exception) {
-  echo "Error al crear el Mantenimiento" . $exception;
+  echo "Mantenimiento  $id actualizado";
+} catch (\Throwable $th) {
+  echo "Error al actualizar el Mantenimiento";
 }
 
 $conn->close();
