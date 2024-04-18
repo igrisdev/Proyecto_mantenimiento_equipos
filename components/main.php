@@ -124,12 +124,12 @@ include('./lib/objetoInfoTablas.php');
     })
   }
 
-  const getDataAjax = (id) => {
+  const getDataAjax = (tabla) => {
     let element
     $.ajax({
       url: `/Proyecto_mantenimiento_equipos/api/obtener/obtener__tablas.php`,
       data: {
-        tabla: id
+        tabla
       },
       method: 'POST',
       success: (data) => {
@@ -143,8 +143,8 @@ include('./lib/objetoInfoTablas.php');
           }
 
           fila += `<td class="px-6 py-4 flex flex-wrap gap-x-6 gap-y-2">
-                    <button type="submit" id="actualizar__${id}-${item.id ?? item.cc}" class="font-medium text-blue-600 hover:underline">Actualizar</button>
-                    <button type="submit" id="eliminar__${id}-${item.id ?? item.cc}" class="font-medium text-blue-600 hover:underline">Eliminar</button>
+                    <button type="submit" id="actualizar__${tabla}-${item.id ?? item.cc}" class="font-medium text-blue-600 hover:underline">Actualizar</button>
+                    <button type="submit" id="eliminar__${tabla}-${item.id ?? item.cc}" class="font-medium text-blue-600 hover:underline">Eliminar</button>
                   </td>`;
 
 
@@ -152,16 +152,25 @@ include('./lib/objetoInfoTablas.php');
         }).join('');
 
 
-        $(`#containerRows__${id}`).html(filas);
+        $(`#containerRows__${tabla}`).html(filas);
 
         res.map(item => {
-          $(`#eliminar__${id}-${item.id ?? item.cc}`).on('click', () => {
+          $(`#eliminar__${tabla}-${item.id ?? item.cc}`).on('click', () => {
             deleteDataAjax(id, item.id ?? item.cc);
           })
-          $(`#actualizar__${id}-${item.id ?? item.cc}`).on('click', () => {
-            document.getElementById(`dialog__${id}`).showModal();
+          $(`#actualizar__${tabla}-${item.id ?? item.cc}`).on('click', () => {
+            document.getElementById(`dialog__${tabla}`).showModal();
 
-            getOneDataAjax(id, item.id ?? item.cc)
+            const inputs = $(`#form__${tabla} input`)
+            const button = $(`#form__${tabla} button`)
+            button.attr('id', `${item.id ?? item.cc}`)
+            button.attr('isUpdate', true)
+
+            inputs.each(function() {
+              if ($(this).attr('name') in item) {
+                $(this).val(item[$(this).attr('name')]);
+              }
+            })
           });
         })
       },
