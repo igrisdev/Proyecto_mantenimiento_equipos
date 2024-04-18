@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+}
+svg text {
+  animation: stroke 1s;
+  animation-iteration-count: 1;
+  stroke-width: 1;
+  stroke: #000000;
+  font-size: 20px;
+}
+@keyframes stroke {
+  0% {
+    fill: rgba(72, 138, 204, 0);
+    stroke: rgba(0, 0, 0, 1);
+    stroke-dashoffset: 25%;
+    stroke-dasharray: 0 50%;
+    stroke-width: 0;
+  }
+  70% {
+    fill: rgba(72, 138, 204, 0);
+    stroke: rgba(0, 0, 0, 1);
+  }
+  80% {
+    fill: rgba(72, 138, 204, 0);
+    stroke: rgba(0, 0, 0, 1);
+    stroke-width: 2;
+  }
+  100% {
+    fill: rgb(22, 25, 27);
+    stroke: rgba(54, 95, 160, 0);
+    stroke-dashoffset: -25%;
+    stroke-dasharray: 50% 0;
+    stroke-width: 0;
+  }
+}
