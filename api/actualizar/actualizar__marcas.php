@@ -4,6 +4,12 @@ include("../../db/database.php");
 
 $conn = connection();
 
+if (!isset($_POST['id'])) {
+  echo "Falta el Id";
+  $conn->close();
+  return;
+}
+
 if (!isset($_POST['nombre'])) {
   echo "Falta el Nombre";
   $conn->close();
@@ -11,12 +17,13 @@ if (!isset($_POST['nombre'])) {
 }
 
 $nombre = $_POST['nombre'];
+$id = $_POST['id'];
 
-$query = "INSERT INTO `marcas` (`id`, `nombre`) VALUES (NULL, '$nombre');";
+$query = "UPDATE `marcas` SET `nombre` = '$nombre' WHERE `marcas`.`id` = $id;";
 
 try {
   $conn->query($query);
-  echo "Marca Creada";
+  echo "Marca $id Actualizada";
 } catch (\Throwable $th) {
-  echo "Error al crear la Marca";
+  echo "Error al actualizar la Marca";
 }
