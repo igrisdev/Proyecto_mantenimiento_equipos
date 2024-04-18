@@ -4,6 +4,12 @@ include("../../db/database.php");
 
 $conn = connection();
 
+if (!isset($_POST['id'])) {
+  echo "Falta el Nombre";
+  $conn->close();
+  return;
+}
+
 if (!isset($_POST['nombre'])) {
   echo "Falta el Nombre";
   $conn->close();
@@ -16,16 +22,17 @@ if (!isset($_POST['idSede'])) {
   return;
 }
 
+$id = $_POST['id'];
 $nombre = $_POST['nombre'];
 $idSede = $_POST['idSede'];
 
-$query = "INSERT INTO `salas` (`id`, `nombre`, `idSede`) VALUES (NULL, '$nombre', '$idSede');";
+$query = "UPDATE `salas` SET `nombre` = '$nombre', `idSede` = '$idSede' WHERE `salas`.`id` = $id;";
 
 try {
   $conn->query($query);
-  echo "Sala Creada";
+  echo "Sala $id actualizada";
 } catch (\Throwable $th) {
-  echo "Error al crear la Sala";
+  echo "Error al actualizar la Sala";
 }
 
 $conn->close();
