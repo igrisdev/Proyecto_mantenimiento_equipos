@@ -30,7 +30,7 @@ if ($tabla === 'equipos') {
 }
 
 if ($tabla === 'mantenimientos') {
-  $query = "SELECT * FROM `$tabla` WHERE `id` LIKE '%$buscar%' OR `problema` LIKE '%$buscar%' OR `descripcion` LIKE '%$buscar%'";
+  $query = "SELECT * FROM `$tabla` WHERE `id` LIKE '%$buscar%' OR `problema` LIKE '%$buscar%' OR `tipo_mantenimiento` LIKE '%$buscar%' OR `descripcion` LIKE '%$buscar%'";
 }
 
 try {
