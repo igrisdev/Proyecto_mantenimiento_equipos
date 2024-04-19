@@ -51,12 +51,12 @@ include('./lib/objetoInfoTablas.php');
             </th>`;
   }
 
-  const searchAjax = (id, buscar) => {
+  const searchAjax = (tabla, buscar) => {
     let element
     $.ajax({
       url: `/Proyecto_mantenimiento_equipos/api/obtener/buscar.php`,
       data: {
-        tabla: id,
+        tabla,
         buscar
       },
       method: 'POST',
@@ -72,15 +72,14 @@ include('./lib/objetoInfoTablas.php');
           }
 
           fila += `<td class="px-6 py-4 flex flex-wrap gap-x-6 gap-y-2">
-                    <button type="submit" id="actualizar__${id}-${item.id ?? item.cc}" class="font-medium text-blue-600 hover:underline">Actualizar</button>
-                    <button type="submit" id="eliminar__${id}-${item.id ?? item.cc}" class="font-medium text-blue-600 hover:underline">Eliminar</button>
+                    <button type="submit" id="actualizar__${tabla}-${item.id ?? item.cc}" class="font-medium text-blue-600 hover:underline">Actualizar</button>
+                    <button type="submit" id="eliminar__${tabla}-${item.id ?? item.cc}" class="font-medium text-blue-600 hover:underline">Eliminar</button>
                   </td>`;
 
           return `<tr class="bg-white border-b hover:bg-gray-50">${fila}</tr>`;
         })
 
-
-        const containerRowsElement = $(`#containerRows__${id}`);
+        const containerRowsElement = $(`#containerRows__${tabla}`);
         containerRowsElement.html(filas);
         const parentElement = containerRowsElement.parent().parent().parent();
 
@@ -89,6 +88,8 @@ include('./lib/objetoInfoTablas.php');
         } else {
           parentElement.show()
         }
+
+        addEventListenerButtonsTable(tabla, res)
       },
       error: (error) => {
         alert(error);
@@ -128,6 +129,30 @@ include('./lib/objetoInfoTablas.php');
     return text.charAt(0).toUpperCase() + text.slice(1);
   }
 
+  const addEventListenerButtonsTable = (tabla, res) => {
+    res.map(item => {
+      $(`#eliminar__${tabla}-${item.id ?? item.cc}`).on('click', () => {
+        deleteDataAjax(tabla, item.id ?? item.cc);
+      })
+      $(`#actualizar__${tabla}-${item.id ?? item.cc}`).on('click', () => {
+        document.getElementById(`dialog__${tabla}`).showModal();
+
+        const inputs = $(`#form__${tabla} input`)
+        const button = $(`#form__${tabla} button`)
+
+        button.attr('id', `${item.id ?? item.cc}`)
+        button.attr('data-actualizar', true)
+        button.html(`Actualizar ${capitalice(tabla)}`)
+
+        inputs.each(function() {
+          if ($(this).attr('name') in item) {
+            $(this).val(item[$(this).attr('name')]);
+          }
+        })
+      });
+    })
+  }
+
   const getDataAjax = (tabla) => {
     let element
     $.ajax({
@@ -158,27 +183,7 @@ include('./lib/objetoInfoTablas.php');
 
         $(`#containerRows__${tabla}`).html(filas);
 
-        res.map(item => {
-          $(`#eliminar__${tabla}-${item.id ?? item.cc}`).on('click', () => {
-            deleteDataAjax(tabla, item.id ?? item.cc);
-          })
-          $(`#actualizar__${tabla}-${item.id ?? item.cc}`).on('click', () => {
-            document.getElementById(`dialog__${tabla}`).showModal();
-
-            const inputs = $(`#form__${tabla} input`)
-            const button = $(`#form__${tabla} button`)
-
-            button.attr('id', `${item.id ?? item.cc}`)
-            button.attr('data-actualizar', true)
-            button.html(`Actualizar ${capitalice(tabla)}`)
-
-            inputs.each(function() {
-              if ($(this).attr('name') in item) {
-                $(this).val(item[$(this).attr('name')]);
-              }
-            })
-          });
-        })
+        addEventListenerButtonsTable(tabla, res)
       },
       error: (error) => {
         alert(error);
@@ -195,6 +200,13 @@ include('./lib/objetoInfoTablas.php');
 
         alert(data);
         document.getElementById(`dialog__${tabla}`).close();
+
+        const button = $(`#form__${tabla} button`)
+
+        button.removeAttr('id')
+        button.removeAttr('data-actualizar')
+        button.html(`Crear ${capitalice(tabla)}`)
+
         inputs.each(function() {
           $(this).val('');
         });
