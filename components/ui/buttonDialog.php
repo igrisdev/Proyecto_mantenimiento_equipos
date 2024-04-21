@@ -13,7 +13,7 @@ class ButtonDialog
       <form class='flex flex-col gap-2' id='form__{$id}'>
         <label class='flex flex-col'>
           <span class='text-white'>Nombre</span>
-          <input placeholder='Bicentenario ...' autofocus name='nombre' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
+          <input required placeholder='Bicentenario ...' autofocus name='nombre' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
         </label>
 
         <button class='bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150' type='submit'>Crear {$label}</button>
@@ -25,12 +25,12 @@ class ButtonDialog
       <form class='flex flex-col gap-2' id='form__{$id}'>
         <label class='flex flex-col'>
           <span class='text-white'>Nombre</span>
-          <input placeholder='Bicentenario ...' autofocus name='nombre' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
+          <input required placeholder='Bicentenario ...' autofocus name='nombre' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
         </label>
 
         <label class='flex flex-col'>
           <span class='text-white'>Sede</span>
-          <input placeholder='Bicentenario ...' name='idSede' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
+          <input required placeholder='Bicentenario ...' name='idSede' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
         </label>
 
         <button class='bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150' type='submit'>Crear {$label}</button>
@@ -42,7 +42,7 @@ class ButtonDialog
       <form class='flex flex-col gap-2' id='form__{$id}'>
         <label class='flex flex-col'>
           <span class='text-white'>Nombre</span>
-          <input placeholder='Bicentenario ...' autofocus name='nombre' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
+          <input required placeholder='Bicentenario ...' autofocus name='nombre' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
         </label>
 
         <button class='bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150' type='submit'>Crear {$label}</button>
@@ -54,17 +54,17 @@ class ButtonDialog
       <form class='flex flex-col gap-2' id='form__{$id}'>
         <label class='flex flex-col'>
           <span class='text-white'>Tipo</span>
-          <input placeholder='Bicentenario ...' autofocus name='tipo' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
+          <input required placeholder='Bicentenario ...' autofocus name='tipo' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
         </label>
 
         <label class='flex flex-col'>
           <span class='text-white'>Marca</span>
-          <input placeholder='Bicentenario ...' name='idMarca' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
+          <input required placeholder='Bicentenario ...' name='idMarca' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
         </label>
 
         <label class='flex flex-col'>
           <span class='text-white'>Sala</span>
-          <input placeholder='Bicentenario ...' name='idSala' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
+          <input required placeholder='Bicentenario ...' name='idSala' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
         </label>
 
         <button class='bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150' type='submit'>Crear {$label}</button>
@@ -76,12 +76,12 @@ class ButtonDialog
       <form class='flex flex-col gap-2' id='form__{$id}'>
         <label class='flex flex-col'>
           <span class='text-white'>Cédula</span>
-          <input placeholder='Bicentenario ...' autofocus name='cc' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
+          <input required placeholder='Bicentenario ...' autofocus name='cc' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
         </label>
 
         <label class='flex flex-col'>
           <span class='text-white'>Nombre</span>
-          <input placeholder='Bicentenario ...' name='nombre' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
+          <input required placeholder='Bicentenario ...' name='nombre' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
         </label>
 
         <button class='bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150' type='submit'>Crear {$label}</button>
@@ -93,27 +93,27 @@ class ButtonDialog
       <form class='flex flex-col gap-2' id='form__{$id}'>
         <label class='flex flex-col'>
           <span class='text-white'>Tipo De Mantenimiento</span>
-          <input placeholder='Bicentenario ...' autofocus name='tipo_mantenimiento' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
+          <input required placeholder='Bicentenario ...' autofocus name='tipo_mantenimiento' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
         </label>
 
         <label class='flex flex-col'>
           <span class='text-white'>Problema</span>
-          <input placeholder='Bicentenario ...' name='problema' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
+          <input required placeholder='Bicentenario ...' name='problema' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
         </label>
 
         <label class='flex flex-col'>
           <span class='text-white'>Descripción</span>
-          <input placeholder='Bicentenario ...' name='descripcion' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
+          <input required placeholder='Bicentenario ...' name='descripcion' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
         </label>
 
         <label class='flex flex-col'>
           <span class='text-white'>Equipo</span>
-          <input placeholder='Bicentenario ...' name='idEquipo' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
+          <input required placeholder='Bicentenario ...' name='idEquipo' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
         </label>
 
         <label class='flex flex-col'>
           <span class='text-white'>Monitor</span>
-          <input placeholder='Bicentenario ...' name='quienCC' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
+          <input required placeholder='Bicentenario ...' name='quienCC' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
         </label>
 
         <button class='bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150' type='submit'>Crear {$label}</button>
@@ -142,14 +142,14 @@ class ButtonDialog
       <h2 class='text-2xl font-bold text-gray-200 mb-4'>{$label}</h2>
 
       <form class='flex flex-col'>
-      <input placeholder='Full Name' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
-      <input placeholder='Email' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='email'>
+      <input required placeholder='Full Name' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
+      <input required placeholder='Email' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='email'>
       <select class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' id='product'>
         <option value='product-1'>Product 1</option>
         <option value='product-2'>Product 2</option>
         <option value='product-3'>Product 3</option>
       </select>
-      <input placeholder='Rating (1-5)' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='number'>
+      <input required placeholder='Rating (1-5)' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='number'>
       <textarea placeholder='Feedback' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' name='feedback'></textarea>
 
       <button class='bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150' type='submit'>Submit</button>
