@@ -17,6 +17,12 @@ $query = "INSERT INTO `sedes` (`id`, `nombre`) VALUES (NULL, '$nombre');";
 try {
   $conn->query($query);
   echo "Sede Creada";
-} catch (\Throwable $th) {
+} catch (mysqli_sql_exception  $exception) {
+  if ($exception->getCode() == 1062) {
+    echo "La Sede ya existe";
+    return;
+  }
   echo "Error al crear la Sede";
 }
+
+$conn->close();
