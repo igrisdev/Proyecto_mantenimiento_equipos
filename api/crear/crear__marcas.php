@@ -17,6 +17,13 @@ $query = "INSERT INTO `marcas` (`id`, `nombre`) VALUES (NULL, '$nombre');";
 try {
   $conn->query($query);
   echo "Marca Creada";
-} catch (\Throwable $th) {
-  echo "Error al crear la Marca";
+} catch (mysqli_sql_exception $exception) {
+  if ($exception->getCode() == 1062) {
+    echo "La Marca ya existe";
+    return;
+  }
+
+  echo "Error al crear la Marca: Por ";
 }
+
+$conn->close();
