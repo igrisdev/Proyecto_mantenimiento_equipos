@@ -24,6 +24,12 @@ $query = "INSERT INTO `monitores` (`cc`, `nombre`) VALUES ('$cc', '$nombre');";
 try {
   $conn->query($query);
   echo "Monitor Creada";
-} catch (\Throwable $th) {
+} catch (mysqli_sql_exception $exception) {
+  if ($exception->getCode() == 1062) {
+    echo "Monitor ya existe";
+    return;
+  }
   echo "Error al crear el Monitor";
 }
+
+$conn->close();
