@@ -1,10 +1,10 @@
 <?php
 
 $navItems = [
-  ['label' => 'Sedes', 'id' => 'sedes'],
-  ['label' => 'Salas', 'id' => 'salas'],
-  ['label' => 'Marcas', 'id' => 'marcas'],
-  ['label' => 'Equipos', 'id' => 'equipos'],
-  ['label' => 'Monitores', 'id' => 'monitores'],
-  ['label' => 'Mantenimientos', 'id' => 'mantenimientos'],
+  ['label' => 'Sedes', 'href' => '#', 'id' => 'sedes'],
+  ['label' => 'Salas', 'href' => '#', 'id' => 'salas'],
+  ['label' => 'Marcas', 'href' => '#', 'id' => 'marcas'],
+  ['label' => 'Equipos', 'href' => '#', 'id' => 'equipos'],
+  ['label' => 'Monitores', 'href' => '#', 'id' => 'monitores'],
+  ['label' => 'Mantenimientos', 'href' => '#', 'id' => 'mantenimientos'],
 ];
