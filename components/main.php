@@ -4,7 +4,7 @@ include('./lib/objetoInfoTablas.php');
 
 ?>
 
-<main class="flex flex-col min-h-screen gap-6 max-w-screen-2xl mx-auto px-2 2xl:p-0 pb-10">
+<main class="flex flex-col min-h-screen gap-6 max-w-screen-2xl mx-auto px-2 2xl:p-0 2xl:pb-10 pb-10">
   <section class="mt-4">
     <div class="relative">
       <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
