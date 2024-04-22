@@ -90,8 +90,8 @@ class ButtonDialog
         <label class='flex flex-col'>
           <span class='text-white'>Estado</span>
           <select name='estado' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' id='estado' required>
-            <option value='0' selected>Mantenimiento</option>
-            <option value='1'>Funcionando</option>
+            <option value='1' selected>Mantenimiento</option>
+            <option value='0'>Funcionando</option>
           </select>
         </label>
 
@@ -119,29 +119,38 @@ class ButtonDialog
     if ($id === "mantenimientos") {
       echo "
       <form class='flex flex-col gap-2' id='form__{$id}'>
+         <label class='flex flex-col'>
+          <span class='text-white'>Equipo</span>
+          <select autofocus name='idEquipo' data-nombre-tabla='equipos' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' id='idEquipo' required>
+            <option value='' selected>Error</option>
+          </select>
+        </label>
+
         <label class='flex flex-col'>
           <span class='text-white'>Tipo De Mantenimiento</span>
-          <input required placeholder='Bicentenario ...' autofocus name='tipo_mantenimiento' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
+          <select name='tipo_mantenimiento' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' id='tipo_mantenimiento' required>
+            <option value='' selected>Seleccionar</option>
+            <option value='correctivo' >Correctivo</option>
+            <option value='preventivo'>Preventivo</option>
+          </select>
+        </label>
+
+        <label class='flex flex-col'>
+          <span class='text-white'>Fecha de inicio mantenimiento</span>
+          <input required placeholder='Bicentenario ...' name='fecha_inicio' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='date'>
         </label>
 
         <label class='flex flex-col'>
           <span class='text-white'>Problema</span>
-          <input required placeholder='Bicentenario ...' name='problema' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
+          <textarea placeholder='Feedback' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' name='problema'></textarea>
         </label>
 
-        <label class='flex flex-col'>
-          <span class='text-white'>Descripción</span>
-          <input required placeholder='Bicentenario ...' name='descripcion' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
-        </label>
-
-        <label class='flex flex-col'>
-          <span class='text-white'>Equipo</span>
-          <input required placeholder='Bicentenario ...' name='idEquipo' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
-        </label>
 
         <label class='flex flex-col'>
           <span class='text-white'>Monitor</span>
-          <input required placeholder='Bicentenario ...' name='quienCC' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
+          <select name='quienCC' data-nombre-tabla='monitores' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' id='quienCC' required>
+            <option value='' selected>Error</option>
+          </select>
         </label>
 
         <button class='bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150' type='submit'>Crear {$label}</button>
@@ -163,9 +172,3 @@ class ButtonDialog
     ";
   }
 }
-
-
-/*
-      <textarea placeholder='Feedback' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' name='feedback'></textarea>
-
-    </dialog> */
