@@ -47,8 +47,6 @@ $descripcion = $_POST['descripcion'];
 $idEquipo = $_POST['idEquipo'];
 $quienCC = $_POST['quienCC'];
 
-// $query = "INSERT INTO `mantenimientos` (`id`, `tipo_mantenimiento`, `problema`, `descripcion`, `idEquipo`, `quienCC`) VALUES (NULL, '$tipo_mantenimiento', '$problema', '$descripcion', '$idEquipo', '$quienCC');";
-
 $query = "UPDATE `mantenimientos` SET `tipo_mantenimiento`='$tipo_mantenimiento',`problema`='$problema',`descripcion`='$descripcion',`idEquipo`='$idEquipo', `quienCC`='$quienCC' WHERE `id`=$id";
 
 try {
