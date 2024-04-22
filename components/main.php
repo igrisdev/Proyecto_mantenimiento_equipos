@@ -4,7 +4,7 @@ include('./lib/objetoInfoTablas.php');
 
 ?>
 
-<main class="flex flex-col min-h-screen gap-6 max-w-6xl mx-auto px-2 md:p-0">
+<main class="flex flex-col min-h-screen gap-6 max-w-screen-2xl mx-auto px-2 2xl:p-0">
   <section class="mt-4">
     <div class="relative">
       <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -172,7 +172,6 @@ include('./lib/objetoInfoTablas.php');
   }
 
   const updateDataAjax = (tabla, formData, inputs, selects) => {
-    console.log(formData);
     $.ajax({
       url: `/Proyecto_mantenimiento_equipos/api/actualizar/actualizar__${tabla}.php`,
       data: formData,

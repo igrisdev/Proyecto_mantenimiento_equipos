@@ -6,7 +6,7 @@ include('./lib/objetoCruds.php');
 
 ?>
 
-<section class="flex mt-4 lg:mt-0 gap-4 items-center justify-center lg:justify-between max-w-6xl mx-auto px-2 md:p-0">
+<section class="flex mt-4 lg:mt-0 gap-4 items-center justify-center lg:justify-between max-w-screen-2xl	mx-auto px-2 2xl:p-0">
   <h2 class="text-xl font-medium flex gap-3">
     Crear <span class="hidden lg:block">-></span>
   </h2>
