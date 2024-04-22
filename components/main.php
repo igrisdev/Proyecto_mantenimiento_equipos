@@ -102,7 +102,6 @@ include('./lib/objetoInfoTablas.php');
   }
 
   const addEventListenerButtonsTable = (tabla, res) => {
-    console.log(res);
     res.map(item => {
       $(`#eliminar__${tabla}-${item.id ?? item.cc}`).on('click', () => {
         deleteDataAjax(tabla, item.id ?? item.cc);
@@ -172,7 +171,7 @@ include('./lib/objetoInfoTablas.php');
     })
   }
 
-  const updateDataAjax = (tabla, formData, inputs) => {
+  const updateDataAjax = (tabla, formData, inputs, selects) => {
     $.ajax({
       url: `/Proyecto_mantenimiento_equipos/api/actualizar/actualizar__${tabla}.php`,
       data: formData,
@@ -189,6 +188,10 @@ include('./lib/objetoInfoTablas.php');
         button.html(`Crear ${capitalice(tabla)}`)
 
         inputs.each(function() {
+          $(this).val('');
+        });
+
+        selects.each(function() {
           $(this).val('');
         });
         // función declarada en main.php
