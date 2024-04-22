@@ -172,12 +172,12 @@ include('./lib/objetoInfoTablas.php');
   }
 
   const updateDataAjax = (tabla, formData, inputs, selects) => {
+    console.log(formData);
     $.ajax({
       url: `/Proyecto_mantenimiento_equipos/api/actualizar/actualizar__${tabla}.php`,
       data: formData,
       method: 'POST',
       success: (data) => {
-
         alert(data);
         document.getElementById(`dialog__${tabla}`).close();
 

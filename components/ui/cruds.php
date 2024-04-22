@@ -35,7 +35,7 @@ include('./lib/objetoCruds.php');
     )
   })
 
-  const getOneDataAjax = (tabla, nameTable) => {
+  const getOneDataAjax = (tabla, nameTable, selects) => {
     $.ajax({
       url: `/Proyecto_mantenimiento_equipos/api/obtener/obtener__una_tabla.php`,
       data: {
@@ -45,7 +45,7 @@ include('./lib/objetoCruds.php');
       success: (data) => {
         const res = JSON.parse(data);
 
-        setSelect(tabla, res)
+        setSelect(tabla, res, selects)
       },
       error: (error) => {
         alert(error);
@@ -53,10 +53,8 @@ include('./lib/objetoCruds.php');
     })
   }
 
-  const setSelect = (tabla, res) => {
-    const select = $(`#form__${tabla} select`)
-
-    select.each(function() {
+  const setSelect = (tabla, res, selects) => {
+    selects.each(function() {
       $(this).empty();
       $(this).append(`<option value="" selected required>Seleccione</option>`);
       res.map(item => {
@@ -70,12 +68,15 @@ include('./lib/objetoCruds.php');
       document.getElementById(`dialog__${tabla}`).showModal();
     });
 
-    const select = $(`#form__${tabla} select`)
+    const selects = $(`#form__${tabla} select`)
 
-    select.each(function() {
-      const nameTable = select.attr('data-nombre-tabla')
-      getOneDataAjax(tabla, nameTable)
+    selects.each(function() {
+      if ($(this).attr('data-nombre-tabla')) {
+        const nameTable = $(this).attr('data-nombre-tabla')
+        getOneDataAjax(tabla, nameTable, $(this))
+      }
     })
+
   }
 
   const closeDialog = (tabla) => {
