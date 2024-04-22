@@ -97,34 +97,6 @@ include('./lib/objetoInfoTablas.php');
     })
   }
 
-  const getOneDataAjax = (tabla, id) => {
-    let element
-    $.ajax({
-      url: `/Proyecto_mantenimiento_equipos/api/obtener/obtener__una_tabla.php`,
-      data: {
-        tabla,
-        id
-      },
-      method: 'POST',
-      success: (data) => {
-
-        const res = JSON.parse(data);
-        const form = $(`#form__${tabla} input`)
-
-        res.map(item => {
-          for (const key in item) {
-            console.log(form);
-            // input.val(item[key])
-          }
-        })
-
-      },
-      error: (error) => {
-        alert(error);
-      }
-    })
-  }
-
   const capitalice = (text) => {
     return text.charAt(0).toUpperCase() + text.slice(1);
   }

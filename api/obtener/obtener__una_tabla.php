@@ -9,21 +9,9 @@ if (!isset($_POST['tabla'])) {
   return;
 }
 
-if (!isset($_POST['id'])) {
-  echo "No hay texto en el buscador";
-  return;
-}
-
 $tabla = $_POST['tabla'];
-$id = $_POST['id'];
 
-if ($tabla !== 'monitores') {
-  $query = "SELECT * FROM `$tabla` WHERE `id` LIKE '%$id%'";
-}
-
-if ($tabla === 'monitores') {
-  $query = "SELECT * FROM `$tabla` WHERE `cc` LIKE '%$id%'";
-}
+$query = "SELECT * FROM `$tabla`";
 
 try {
   $result = $conn->query($query);
