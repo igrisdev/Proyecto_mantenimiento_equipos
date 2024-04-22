@@ -71,20 +71,36 @@ include('./lib/objetoCruds.php');
     });
 
     const select = $(`#form__${tabla} select`)
+
     select.each(function() {
       const nameTable = select.attr('data-nombre-tabla')
       getOneDataAjax(tabla, nameTable)
     })
-
   }
 
   const closeDialog = (tabla) => {
     $(`#button__close-${tabla}`).on('click', () => {
       document.getElementById(`dialog__${tabla}`).close();
+
+      const button = $(`#form__${tabla} button`)
+      const inputs = $(`#form__${tabla} input`)
+      const selects = $(`#form__${tabla} select`)
+
+      button.removeAttr('id')
+      button.removeAttr('data-actualizar')
+      button.html(`Crear ${capitalice(tabla)}`)
+
+      inputs.each(function() {
+        $(this).val('');
+      })
+
+      selects.each(function() {
+        $(this).val('');
+      })
     })
   }
 
-  const createDataAjax = (id, formData, inputs) => {
+  const createDataAjax = (id, formData, inputs, selects) => {
     $.ajax({
       url: `/Proyecto_mantenimiento_equipos/api/crear/crear__${id}.php`,
       data: formData,
@@ -93,6 +109,9 @@ include('./lib/objetoCruds.php');
         alert(data);
         document.getElementById(`dialog__${id}`).close();
         inputs.each(function() {
+          $(this).val('');
+        });
+        selects.each(function() {
           $(this).val('');
         });
         // función declarada en main.php
@@ -107,15 +126,14 @@ include('./lib/objetoCruds.php');
   const formSubmit = (tabla) => {
     $(`#form__${tabla}`).submit((e) => {
       e.preventDefault();
-      const inputs = $(`#form__${tabla} input`);
       const button = $(`#form__${tabla} button`);
-      const select = $(`#form__${tabla} select`);
+      const inputs = $(`#form__${tabla} input`);
+      const selects = $(`#form__${tabla} select`);
 
       isUpdate = button.attr('data-actualizar')
       isId = button.attr('id')
 
       const formData = {}
-
 
       if (isUpdate && isId) {
 
@@ -123,27 +141,25 @@ include('./lib/objetoCruds.php');
           formData[$(this).attr('name')] = $(this).val();
         })
 
-        select.each(function() {
+        selects.each(function() {
           formData[$(this).attr('name')] = $(this).val();
         })
 
         formData['id'] = isId
 
-        updateDataAjax(tabla, formData, inputs)
+        updateDataAjax(tabla, formData, inputs, selects)
         return
       }
-
-      document.getElementById(`form__${tabla}`)
 
       inputs.each(function() {
         formData[$(this).attr('name')] = $(this).val();
       });
 
-      select.each(function() {
+      selects.each(function() {
         formData[$(this).attr('name')] = $(this).val();
       })
 
-      createDataAjax(tabla, formData, inputs)
+      createDataAjax(tabla, formData, inputs, selects)
     });
   }
 </script>
