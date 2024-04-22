@@ -102,21 +102,30 @@ include('./lib/objetoInfoTablas.php');
   }
 
   const addEventListenerButtonsTable = (tabla, res) => {
+    console.log(res);
     res.map(item => {
       $(`#eliminar__${tabla}-${item.id ?? item.cc}`).on('click', () => {
         deleteDataAjax(tabla, item.id ?? item.cc);
       })
+
       $(`#actualizar__${tabla}-${item.id ?? item.cc}`).on('click', () => {
         document.getElementById(`dialog__${tabla}`).showModal();
 
-        const inputs = $(`#form__${tabla} input`)
         const button = $(`#form__${tabla} button`)
+        const inputs = $(`#form__${tabla} input`)
+        const selects = $(`#form__${tabla} select`)
 
         button.attr('id', `${item.id ?? item.cc}`)
         button.attr('data-actualizar', true)
         button.html(`Actualizar ${capitalice(tabla)}`)
 
         inputs.each(function() {
+          if ($(this).attr('name') in item) {
+            $(this).val(item[$(this).attr('name')]);
+          }
+        })
+
+        selects.each(function() {
           if ($(this).attr('name') in item) {
             $(this).val(item[$(this).attr('name')]);
           }
