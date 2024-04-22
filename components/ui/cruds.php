@@ -24,26 +24,63 @@ include('./lib/objetoCruds.php');
   const navItems = <?= json_encode($navItems) ?>;
 
   navItems.map(({
-    id
+    id: tabla
   }) => {
     $(
       function() {
-        openDialog(id);
-        closeDialog(id);
-        formSubmit(id);
+        openDialog(tabla);
+        closeDialog(tabla);
+        formSubmit(tabla);
       }
     )
   })
 
-  const openDialog = (id) => {
-    $(`#button__open-${id}`).on('click', () => {
-      document.getElementById(`dialog__${id}`).showModal();
-    });
+  const getOneDataAjax = (tabla, nameTable) => {
+    $.ajax({
+      url: `/Proyecto_mantenimiento_equipos/api/obtener/obtener__una_tabla.php`,
+      data: {
+        tabla: nameTable
+      },
+      method: 'POST',
+      success: (data) => {
+        const res = JSON.parse(data);
+
+        setSelect(tabla, res)
+      },
+      error: (error) => {
+        alert(error);
+      }
+    })
   }
 
-  const closeDialog = (id) => {
-    $(`#button__close-${id}`).on('click', () => {
-      document.getElementById(`dialog__${id}`).close();
+  const setSelect = (tabla, res) => {
+    const select = $(`#form__${tabla} select`)
+
+    select.each(function() {
+      $(this).empty();
+      $(this).append(`<option value="" selected>Seleccione</option>`);
+      res.map(item => {
+        $(this).append(`<option value="${item.id ?? item.cc}">${item.nombre}</option>`);
+      })
+    })
+  }
+
+  const openDialog = (tabla) => {
+    $(`#button__open-${tabla}`).on('click', () => {
+      document.getElementById(`dialog__${tabla}`).showModal();
+    });
+
+    const select = $(`#form__${tabla} select`)
+    select.each(function() {
+      const nameTable = select.attr('data-nombre-tabla')
+      getOneDataAjax(tabla, nameTable)
+    })
+
+  }
+
+  const closeDialog = (tabla) => {
+    $(`#button__close-${tabla}`).on('click', () => {
+      document.getElementById(`dialog__${tabla}`).close();
     })
   }
 
@@ -72,6 +109,7 @@ include('./lib/objetoCruds.php');
       e.preventDefault();
       const inputs = $(`#form__${tabla} input`);
       const button = $(`#form__${tabla} button`);
+      const select = $(`#form__${tabla} select`);
 
       isUpdate = button.attr('data-actualizar')
       isId = button.attr('id')
@@ -82,6 +120,10 @@ include('./lib/objetoCruds.php');
       if (isUpdate && isId) {
 
         inputs.each(function() {
+          formData[$(this).attr('name')] = $(this).val();
+        })
+
+        select.each(function() {
           formData[$(this).attr('name')] = $(this).val();
         })
 
@@ -96,6 +138,10 @@ include('./lib/objetoCruds.php');
       inputs.each(function() {
         formData[$(this).attr('name')] = $(this).val();
       });
+
+      select.each(function() {
+        formData[$(this).attr('name')] = $(this).val();
+      })
 
       createDataAjax(tabla, formData, inputs)
     });
