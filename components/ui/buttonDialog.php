@@ -30,7 +30,7 @@ class ButtonDialog
 
         <label class='flex flex-col'>
           <span class='text-white'>Sede</span>
-          <select name='idSede' data-nombre-tabla='sedes' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' id='idSede'>
+          <select name='idSede' data-nombre-tabla='sedes' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' id='idSede' required>
             <option value='' selected>Error</option>
           </select>
         </label>

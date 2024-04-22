@@ -58,7 +58,7 @@ include('./lib/objetoCruds.php');
 
     select.each(function() {
       $(this).empty();
-      $(this).append(`<option value="" selected>Seleccione</option>`);
+      $(this).append(`<option value="" selected required>Seleccione</option>`);
       res.map(item => {
         $(this).append(`<option value="${item.id ?? item.cc}">${item.nombre}</option>`);
       })
