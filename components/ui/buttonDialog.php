@@ -90,7 +90,8 @@ class ButtonDialog
         <label class='flex flex-col'>
           <span class='text-white'>Estado</span>
           <select name='estado' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' id='estado' required>
-            <option value='1' selected>Mantenimiento</option>
+            <option value='' selected>Seleccionar</option>
+            <option value='1'>Mantenimiento</option>
             <option value='0'>Funcionando</option>
           </select>
         </label>
