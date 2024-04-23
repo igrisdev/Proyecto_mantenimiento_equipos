@@ -1,6 +1,6 @@
 <?php
 
-include('./lib/objetoNabar.php');
+include('./lib/objetoNavbar.php');
 
 ?>
 
