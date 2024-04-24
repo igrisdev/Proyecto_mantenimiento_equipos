@@ -2,7 +2,7 @@
 
 require('buttonDialog.php');
 
-require('./lib/objetoCruds.php');
+require('./lib/array_botones_crear.php');
 
 ?>
 
@@ -23,7 +23,7 @@ require('./lib/objetoCruds.php');
 <script>
   const navItems = <?= json_encode($navItems) ?>;
 
-  navItems.map(({
+  /* navItems.map(({
     id: tabla
   }) => {
     $(
@@ -183,5 +183,5 @@ require('./lib/objetoCruds.php');
 
       createDataAjax(tabla, formData, inputs, selects, textarea)
     });
-  }
+  } */
 </script>
