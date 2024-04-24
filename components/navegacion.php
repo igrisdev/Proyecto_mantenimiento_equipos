@@ -15,6 +15,7 @@ require('./lib/array_navegacion.php');
 
   <nav>
     <ul class="flex gap-4 flex-wrap">
+      <a href="/Proyecto_mantenimiento_equipos" class="text-lg font-semibold text-black hover:text-gray-500 hover:underline" >Todas las tablas</a>
       <?php foreach ($navItems as $item) : ?>
         <li>
           <a href="<?= $item['href'] ?>.php?tabla=<?= $item['id'] ?>" class="text-lg font-semibold text-black hover:text-gray-500 hover:underline" ><?= $item['label'] ?></a>
