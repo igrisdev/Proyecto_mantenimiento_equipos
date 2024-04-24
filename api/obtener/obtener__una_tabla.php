@@ -13,6 +13,12 @@ $tabla = $_POST['tabla'];
 
 $query = "SELECT * FROM `$tabla`";
 
+
+if (isset($_POST['id'])) {
+  $id = $_POST['id'];
+  $query = "SELECT * FROM `$tabla` WHERE idEquipo = $id";
+}
+
 try {
   $result = $conn->query($query);
   echo json_encode($result->fetch_all(MYSQLI_ASSOC));
