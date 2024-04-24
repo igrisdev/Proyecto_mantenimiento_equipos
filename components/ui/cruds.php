@@ -23,7 +23,7 @@ require('./lib/array_botones_crear.php');
 <script>
   const navItems = <?= json_encode($navItems) ?>;
 
-  /* navItems.map(({
+  navItems.map(({
     id: tabla
   }) => {
     $(
@@ -183,5 +183,5 @@ require('./lib/array_botones_crear.php');
 
       createDataAjax(tabla, formData, inputs, selects, textarea)
     });
-  } */
+  }
 </script>
