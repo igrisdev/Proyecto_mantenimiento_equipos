@@ -1,6 +1,6 @@
 <?php
 
-include('./lib/objetoInfoTablas.php');
+require('./lib/objetoInfoTablas.php');
 
 ?>
 

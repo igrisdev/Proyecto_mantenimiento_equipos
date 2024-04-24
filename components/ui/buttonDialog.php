@@ -13,7 +13,7 @@ class ButtonDialog
       <form class='flex flex-col gap-2' id='form__{$id}'>
         <label class='flex flex-col'>
           <span class='text-white'>Nombre</span>
-          <input required placeholder='Bicentenario ...' autofocus name='nombre' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
+          <input require placeholder='Bicentenario ...' autofocus name='nombre' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
         </label>
 
         <button class='bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150' type='submit'>Crear {$label}</button>
@@ -25,12 +25,12 @@ class ButtonDialog
       <form class='flex flex-col gap-2' id='form__{$id}'>
         <label class='flex flex-col'>
           <span class='text-white'>Nombre</span>
-          <input required placeholder='Bicentenario ...' autofocus name='nombre' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
+          <input require placeholder='Bicentenario ...' autofocus name='nombre' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
         </label>
 
         <label class='flex flex-col'>
           <span class='text-white'>Sede</span>
-          <select name='idSede' data-nombre-tabla='sedes' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' id='idSede' required>
+          <select name='idSede' data-nombre-tabla='sedes' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' id='idSede' require>
             <option value='' selected>Error</option>
           </select>
         </label>
@@ -44,7 +44,7 @@ class ButtonDialog
       <form class='flex flex-col gap-2' id='form__{$id}'>
         <label class='flex flex-col'>
           <span class='text-white'>Nombre</span>
-          <input required placeholder='Bicentenario ...' autofocus name='nombre' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
+          <input require placeholder='Bicentenario ...' autofocus name='nombre' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
         </label>
 
         <button class='bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150' type='submit'>Crear {$label}</button>
@@ -56,12 +56,12 @@ class ButtonDialog
       <form class='flex flex-col gap-2' id='form__{$id}'>
         <label class='flex flex-col'>
           <span class='text-white'>Código de equipo</span>
-          <input required placeholder='Bicentenario ...' autofocus name='codigo' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
+          <input require placeholder='Bicentenario ...' autofocus name='codigo' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
         </label>
 
         <label class='flex flex-col'>
           <span class='text-white'>Tipo</span>
-          <select name='tipo' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' id='tipo' required>
+          <select name='tipo' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' id='tipo' require>
             <option value='' selected>Seleccionar</option>
             <option value='portatil'>Portátil</option>
             <option value='pc'>PC</option>
@@ -70,26 +70,26 @@ class ButtonDialog
 
         <label class='flex flex-col'>
           <span class='text-white'>Marca</span>
-          <select name='idMarca' data-nombre-tabla='marcas' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' id='idMarca' required>
+          <select name='idMarca' data-nombre-tabla='marcas' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' id='idMarca' require>
             <option value='' selected>Error</option>
           </select>
         </label>
 
         <label class='flex flex-col'>
           <span class='text-white'>Fecha de ingreso</span>
-          <input required placeholder='Bicentenario ...' name='fecha_ingreso' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='date'>
+          <input require placeholder='Bicentenario ...' name='fecha_ingreso' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='date'>
         </label>
 
         <label class='flex flex-col'>
           <span class='text-white'>Salas</span>
-          <select name='idSala' data-nombre-tabla='salas' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' id='idSala' required>
+          <select name='idSala' data-nombre-tabla='salas' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' id='idSala' require>
             <option value='' selected>Error</option>
           </select>
         </label>
 
         <label class='flex flex-col'>
           <span class='text-white'>Estado</span>
-          <select name='estado' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' id='estado' required>
+          <select name='estado' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' id='estado' require>
             <option value='' selected>Seleccionar</option>
             <option value='1'>Mantenimiento</option>
             <option value='0'>Funcionando</option>
@@ -105,12 +105,12 @@ class ButtonDialog
       <form class='flex flex-col gap-2' id='form__{$id}'>
         <label class='flex flex-col'>
           <span class='text-white'>Cédula</span>
-          <input required placeholder='Bicentenario ...' autofocus name='cc' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
+          <input require placeholder='Bicentenario ...' autofocus name='cc' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
         </label>
 
         <label class='flex flex-col'>
           <span class='text-white'>Nombre</span>
-          <input required placeholder='Bicentenario ...' name='nombre' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
+          <input require placeholder='Bicentenario ...' name='nombre' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='text'>
         </label>
 
         <button class='bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150' type='submit'>Crear {$label}</button>
@@ -122,14 +122,14 @@ class ButtonDialog
       <form class='flex flex-col gap-2' id='form__{$id}'>
          <label class='flex flex-col'>
           <span class='text-white'>Equipo</span>
-          <select autofocus name='idEquipo' data-nombre-tabla='equipos' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' id='idEquipo' required>
+          <select autofocus name='idEquipo' data-nombre-tabla='equipos' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' id='idEquipo' require>
             <option value='' selected>Error</option>
           </select>
         </label>
 
         <label class='flex flex-col'>
           <span class='text-white'>Tipo De Mantenimiento</span>
-          <select name='tipo_mantenimiento' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' id='tipo_mantenimiento' required>
+          <select name='tipo_mantenimiento' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' id='tipo_mantenimiento' require>
             <option value='' selected>Seleccionar</option>
             <option value='correctivo' >Correctivo</option>
             <option value='preventivo'>Preventivo</option>
@@ -138,7 +138,7 @@ class ButtonDialog
 
         <label class='flex flex-col'>
           <span class='text-white'>Fecha de inicio mantenimiento</span>
-          <input required placeholder='Bicentenario ...' name='fecha_inicio' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='date'>
+          <input require placeholder='Bicentenario ...' name='fecha_inicio' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='date'>
         </label>
 
         <label class='flex flex-col'>
@@ -149,7 +149,7 @@ class ButtonDialog
 
         <label class='flex flex-col'>
           <span class='text-white'>Monitor</span>
-          <select name='quienCC' data-nombre-tabla='monitores' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' id='quienCC' required>
+          <select name='quienCC' data-nombre-tabla='monitores' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' id='quienCC' require>
             <option value='' selected>Error</option>
           </select>
         </label>

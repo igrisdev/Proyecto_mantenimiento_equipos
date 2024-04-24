@@ -1,8 +1,8 @@
 <?php
 
-include('buttonDialog.php');
+require('buttonDialog.php');
 
-include('./lib/objetoCruds.php');
+require('./lib/objetoCruds.php');
 
 ?>
 
@@ -56,7 +56,7 @@ include('./lib/objetoCruds.php');
   const setSelect = (tabla, res, selects) => {
     selects.each(function() {
       $(this).empty();
-      $(this).append(`<option value="" selected required>Seleccione</option>`);
+      $(this).append(`<option value="" selected require>Seleccione</option>`);
       for (let item of res) {
         if (!item.estado) {
           $(this).append(`<option value="${item.id ?? item.cc}">${item.nombre}</option>`);

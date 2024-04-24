@@ -1,6 +1,6 @@
 <?php
 
-include('./lib/objetoNavbar.php');
+require('./lib/objetoNavbar.php');
 
 ?>
 
