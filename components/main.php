@@ -71,10 +71,21 @@ include('./lib/objetoInfoTablas.php');
             fila += addElement(item[key]);
           }
 
-          fila += `<td class="px-6 py-4 flex flex-wrap gap-x-6 gap-y-2">
-                    <button type="submit" id="actualizar__${tabla}-${item.id ?? item.cc}" class="font-medium text-blue-600 hover:underline">Actualizar</button>
-                    <button type="submit" id="eliminar__${tabla}-${item.id ?? item.cc}" class="font-medium text-blue-600 hover:underline">Eliminar</button>
-                  </td>`;
+          if (tabla !== 'equipos') {
+            fila += `<td class="px-6 py-4 flex flex-wrap gap-x-6 gap-y-2">
+                      <button type="submit" id="actualizar__${tabla}-${item.id ?? item.cc}" class="font-medium text-blue-600 hover:underline">Actualizar</button>
+                      <button type="submit" id="eliminar__${tabla}-${item.id ?? item.cc}" class="font-medium text-red-600 hover:underline">Eliminar</button>
+                      </td>`;
+          }
+
+          if (tabla === 'equipos') {
+            fila += `<td class="px-6 py-4 flex flex-wrap gap-x-6 gap-y-2">
+                      <button type="submit" id="actualizar__${tabla}-${item.id ?? item.cc}" class="font-medium text-blue-600 hover:underline">Actualizar</button>
+                      <button type="submit" id="eliminar__${tabla}-${item.id ?? item.cc}" class="font-medium text-red-600 hover:underline">Eliminar</button>
+                      <a href='pages/ver_detalles/equipos.php?table=${tabla}&id=${item.id}' type="submit" id="eliminar__${tabla}-${item.id ?? item.cc}" class="font-medium text-green-600 hover:underline">Ver Detalles</a>
+                      </td>`;
+          }
+
 
           return `<tr class="bg-white border-b hover:bg-gray-50">${fila}</tr>`;
         })
@@ -151,11 +162,20 @@ include('./lib/objetoInfoTablas.php');
             fila += addElement(item[key]);
           }
 
-          fila += `<td class="px-6 py-4 flex flex-wrap gap-x-6 gap-y-2">
-                    <button type="submit" id="actualizar__${tabla}-${item.id ?? item.cc}" class="font-medium text-blue-600 hover:underline">Actualizar</button>
-                    <button type="submit" id="eliminar__${tabla}-${item.id ?? item.cc}" class="font-medium text-red-600 hover:underline">Eliminar</button>
-                  </td>`;
+          if (tabla !== 'equipos') {
+            fila += `<td class="px-6 py-4 flex flex-wrap gap-x-6 gap-y-2">
+                      <button type="submit" id="actualizar__${tabla}-${item.id ?? item.cc}" class="font-medium text-blue-600 hover:underline">Actualizar</button>
+                      <button type="submit" id="eliminar__${tabla}-${item.id ?? item.cc}" class="font-medium text-red-600 hover:underline">Eliminar</button>
+                      </td>`;
+          }
 
+          if (tabla === 'equipos') {
+            fila += `<td class="px-6 py-4 flex flex-wrap gap-x-6 gap-y-2">
+                      <button type="submit" id="actualizar__${tabla}-${item.id ?? item.cc}" class="font-medium text-blue-600 hover:underline">Actualizar</button>
+                      <button type="submit" id="eliminar__${tabla}-${item.id ?? item.cc}" class="font-medium text-red-600 hover:underline">Eliminar</button>
+                      <a href='pages/ver_detalles/equipos.php?table=${tabla}&id=${item.id}' type="submit" id="eliminar__${tabla}-${item.id ?? item.cc}" class="font-medium text-green-600 hover:underline">Ver Detalles</a>
+                      </td>`;
+          }
 
           return `<tr class="bg-white border-b hover:bg-gray-50">${fila}</tr>`;
         }).join('');
