@@ -1,13 +1,13 @@
 // codigo del crud
 navItems.map(({ id: tabla }) => {
   $(function () {
-    openDialog(tabla)
-    closeDialog(tabla)
-    formSubmit(tabla)
+    desplegar_dialog(tabla)
+    cerrar_dialog(tabla)
+    enviar_formulario(tabla)
   })
 })
 
-const getOneDataAjax = (tabla, nameTable, selects) => {
+const obtener_informacion_una_tabla = (tabla, nameTable, selects) => {
   $.ajax({
     url: `/Proyecto_mantenimiento_equipos/api/obtener/obtener__una_tabla.php`,
     data: {
@@ -17,7 +17,7 @@ const getOneDataAjax = (tabla, nameTable, selects) => {
     success: (data) => {
       const res = JSON.parse(data)
 
-      setSelect(tabla, res, selects)
+      añadiendo_informacion_formularios_select(tabla, res, selects)
     },
     error: (error) => {
       alert(error)
@@ -25,7 +25,7 @@ const getOneDataAjax = (tabla, nameTable, selects) => {
   })
 }
 
-const setSelect = (tabla, res, selects) => {
+const añadiendo_informacion_formularios_select = (tabla, res, selects) => {
   selects.each(function () {
     $(this).empty()
     $(this).append(`<option value="" selected require>Seleccione</option>`)
@@ -43,7 +43,7 @@ const setSelect = (tabla, res, selects) => {
   })
 }
 
-const openDialog = (tabla) => {
+const desplegar_dialog = (tabla) => {
   $(`#button__open-${tabla}`).on('click', () => {
     document.getElementById(`dialog__${tabla}`).showModal()
   })
@@ -53,12 +53,12 @@ const openDialog = (tabla) => {
   selects.each(function () {
     if ($(this).attr('data-nombre-tabla')) {
       const nameTable = $(this).attr('data-nombre-tabla')
-      getOneDataAjax(tabla, nameTable, $(this))
+      obtener_informacion_una_tabla(tabla, nameTable, $(this))
     }
   })
 }
 
-const closeDialog = (tabla) => {
+const cerrar_dialog = (tabla) => {
   $(`#button__close-${tabla}`).on('click', () => {
     document.getElementById(`dialog__${tabla}`).close()
 
@@ -80,7 +80,7 @@ const closeDialog = (tabla) => {
   })
 }
 
-const createDataAjax = (id, formData, inputs, selects, textarea) => {
+const crear_informacion_base_datos = (id, formData, inputs, selects, textarea) => {
   console.log(formData)
   $.ajax({
     url: `/Proyecto_mantenimiento_equipos/api/crear/crear__${id}.php`,
@@ -104,7 +104,7 @@ const createDataAjax = (id, formData, inputs, selects, textarea) => {
       })
 
       // función declarada en todas_las_tablas.php
-      allTables()
+      listar_todas_tablas()
     },
     error: (error) => {
       alert(error)
@@ -112,7 +112,7 @@ const createDataAjax = (id, formData, inputs, selects, textarea) => {
   })
 }
 
-const formSubmit = (tabla) => {
+const enviar_formulario = (tabla) => {
   $(`#form__${tabla}`).submit((e) => {
     e.preventDefault()
     const button = $(`#form__${tabla} button`)
@@ -136,7 +136,7 @@ const formSubmit = (tabla) => {
 
       formData['id'] = isId
 
-      updateDataAjax(tabla, formData, inputs, selects)
+      actualizar_informacion_tabla_base_datos(tabla, formData, inputs, selects)
       return
     }
 
@@ -152,19 +152,19 @@ const formSubmit = (tabla) => {
       formData[$(this).attr('name')] = $(this).val()
     })
 
-    createDataAjax(tabla, formData, inputs, selects, textarea)
+    crear_informacion_base_datos(tabla, formData, inputs, selects, textarea)
   })
 }
 
 // codigo de la pagina de todas las tablas
 
-const addElement = (text) => {
+const añadir_th_tabla = (text) => {
   return `<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
               ${text}
             </th>`
 }
 
-const searchAjax = (tabla, buscar) => {
+const buscar_informacion_base_datos = (tabla, buscar) => {
   $.ajax({
     url: `/Proyecto_mantenimiento_equipos/api/obtener/buscar.php`,
     data: {
@@ -179,7 +179,7 @@ const searchAjax = (tabla, buscar) => {
         let fila = ''
 
         for (const key in item) {
-          fila += addElement(item[key])
+          fila += añadir_th_tabla(item[key])
         }
 
         if (tabla !== 'equipos') {
@@ -222,7 +222,7 @@ const searchAjax = (tabla, buscar) => {
         parentElement.show()
       }
 
-      addEventListenerButtonsTable(tabla, res)
+      añadir_eventos_tabla_botones(tabla, res)
     },
     error: (error) => {
       alert(error)
@@ -234,10 +234,10 @@ const capitalice = (text) => {
   return text.charAt(0).toUpperCase() + text.slice(1)
 }
 
-const addEventListenerButtonsTable = (tabla, res) => {
+const añadir_eventos_tabla_botones = (tabla, res) => {
   res.map((item) => {
     $(`#eliminar__${tabla}-${item.id ?? item.cc}`).on('click', () => {
-      deleteDataAjax(tabla, item.id ?? item.cc)
+      eliminar_informacion_tabla(tabla, item.id ?? item.cc)
     })
 
     $(`#actualizar__${tabla}-${item.id ?? item.cc}`).on('click', () => {
@@ -266,7 +266,7 @@ const addEventListenerButtonsTable = (tabla, res) => {
   })
 }
 
-const getDataAjax = (tabla) => {
+const obtener_informacion_todas_tablas = (tabla) => {
   $.ajax({
     url: `/Proyecto_mantenimiento_equipos/api/obtener/obtener__tablas.php`,
     data: {
@@ -281,7 +281,7 @@ const getDataAjax = (tabla) => {
           let fila = ''
 
           for (const key in item) {
-            fila += addElement(item[key])
+            fila += añadir_th_tabla(item[key])
           }
 
           if (tabla !== 'equipos') {
@@ -317,7 +317,7 @@ const getDataAjax = (tabla) => {
 
       $(`#containerRows__${tabla}`).html(filas)
 
-      addEventListenerButtonsTable(tabla, res)
+      añadir_eventos_tabla_botones(tabla, res)
     },
     error: (error) => {
       alert(error)
@@ -325,7 +325,7 @@ const getDataAjax = (tabla) => {
   })
 }
 
-const updateDataAjax = (tabla, formData, inputs, selects) => {
+const actualizar_informacion_tabla_base_datos = (tabla, formData, inputs, selects) => {
   $.ajax({
     url: `/Proyecto_mantenimiento_equipos/api/actualizar/actualizar__${tabla}.php`,
     data: formData,
@@ -348,7 +348,7 @@ const updateDataAjax = (tabla, formData, inputs, selects) => {
         $(this).val('')
       })
       // función declarada en todas_las_tablas.php
-      allTables()
+      listar_todas_tablas()
     },
     error: (error) => {
       alert(error)
@@ -356,7 +356,7 @@ const updateDataAjax = (tabla, formData, inputs, selects) => {
   })
 }
 
-const deleteDataAjax = (id, itemId) => {
+const eliminar_informacion_tabla = (id, itemId) => {
   $.ajax({
     url: `/Proyecto_mantenimiento_equipos/api/eliminar/eliminar__fila.php`,
     data: {
@@ -366,7 +366,7 @@ const deleteDataAjax = (id, itemId) => {
     method: 'POST',
     success: (data) => {
       alert(data)
-      allTables()
+      listar_todas_tablas()
     },
     error: (error) => {
       alert(error)
@@ -374,28 +374,28 @@ const deleteDataAjax = (id, itemId) => {
   })
 }
 
-const allTables = () => {
+const listar_todas_tablas = () => {
   tablas.map(({ id }) => {
     $(function () {
-      getDataAjax(id)
+      obtener_informacion_todas_tablas(id)
     })
   })
 }
 
 $(function () {
-  allTables()
+  listar_todas_tablas()
 
   $('#table-search').keyup((event) => {
     const buscar = event.target.value
 
     tablas.map(({ id }) => {
-      searchAjax(id, buscar)
+      buscar_informacion_base_datos(id, buscar)
     })
   })
 })
 
 // codigo de detalles de los equipos
-const obtenerDetallesEquipo = (tabla, id) => {
+const obtener_detalles_equipo = (tabla, id) => {
   $.ajax({
     url: `/Proyecto_mantenimiento_equipos/api/obtener/obtener__una_tabla.php`,
     data: {
@@ -411,7 +411,7 @@ const obtenerDetallesEquipo = (tabla, id) => {
           let fila = ''
 
           for (const key in item) {
-            fila += addElement(item[key])
+            fila += añadir_th_tabla(item[key])
           }
 
           if (tabla !== 'equipos') {
@@ -447,7 +447,7 @@ const obtenerDetallesEquipo = (tabla, id) => {
 
       $(`#contenedorFilasTablaUnica_${tabla}`).html(filas)
 
-      addEventListenerButtonsTable(tabla, res)
+      añadir_eventos_tabla_botones(tabla, res)
     },
     error: (error) => {
       alert(error)
@@ -457,5 +457,5 @@ const obtenerDetallesEquipo = (tabla, id) => {
 
 $(function () {
   const tabla = 'mantenimientos'
-  obtenerDetallesEquipo(tabla, idDetalles)
+  obtener_detalles_equipo(tabla, idDetalles)
 })
