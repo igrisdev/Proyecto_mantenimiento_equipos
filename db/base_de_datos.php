@@ -1,5 +1,6 @@
 <?php
 
+// colección a la base de datos
 function connection()
 {
   $conn = new mysqli("localhost", "root", "", "db_pme");

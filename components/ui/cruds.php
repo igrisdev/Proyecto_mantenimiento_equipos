@@ -2,7 +2,7 @@
 
 require('buttonDialog.php');
 
-require('./lib/array_botones_crear.php');
+require('./lib/objetoCruds.php');
 
 ?>
 
