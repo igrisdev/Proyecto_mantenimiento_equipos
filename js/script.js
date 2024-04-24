@@ -10,7 +10,7 @@ navItems.map(({ id: tabla }) => {
 })
 
 // Obtiene la informacion de una tabla en especifico con ajax
-const obtener_informacion_una_tabla = (tabla, nameTable, selects) => {
+const obtener_informacion_una_tabla = (nameTable, selects) => {
   $.ajax({
     url: `/Proyecto_mantenimiento_equipos/api/obtener/obtener__una_tabla.php`,
     data: {
@@ -65,7 +65,7 @@ const desplegar_dialog = (tabla) => {
       // Obtiene el nombre de la base de datos de el select que esta guardado en un atributo data-nombre-tabla
       const nameTable = $(this).attr('data-nombre-tabla')
 
-      obtener_informacion_una_tabla(tabla, nameTable, $(this))
+      obtener_informacion_una_tabla(nameTable, $(this))
     }
   })
 }
@@ -355,6 +355,7 @@ const añadir_eventos_tabla_botones = (tabla, res) => {
   })
 }
 
+// Optiene la informacion de todas las tablas en la base de datos
 const obtener_informacion_todas_tablas = (tabla) => {
   $.ajax({
     url: `/Proyecto_mantenimiento_equipos/api/obtener/obtener__tablas.php`,
