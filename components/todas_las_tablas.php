@@ -37,7 +37,7 @@ require('./lib/array_informacion_tablas.php');
               </th>
             </tr>
           </thead>
-          <tbody id="containerRows__<?= $tabla['id'] ?>">
+          <tbody id="contenedor_filas_<?= $tabla['id'] ?>">
           </tbody>
         </table>
       </div>
