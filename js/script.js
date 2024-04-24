@@ -10,15 +10,16 @@ navItems.map(({ id: tabla }) => {
 })
 
 // Obtiene la informacion de una tabla en especifico con ajax
-const obtener_informacion_una_tabla = (nameTable, selects) => {
+const obtener_informacion_una_tabla = (nombre_tabla, selects) => {
   $.ajax({
     url: `/Proyecto_mantenimiento_equipos/api/obtener/obtener__una_tabla.php`,
     data: {
-      tabla: nameTable,
+      tabla: nombre_tabla,
     },
     method: 'POST',
     success: (data) => {
       const res = JSON.parse(data)
+      console.log(nombre_tabla, res)
 
       añadiendo_informacion_formularios_select(res, selects)
     },
@@ -63,9 +64,9 @@ const desplegar_dialog = (tabla) => {
   selects.each(function () {
     if ($(this).attr('data-nombre-tabla')) {
       // Obtiene el nombre de la base de datos de el select que esta guardado en un atributo data-nombre-tabla
-      const nameTable = $(this).attr('data-nombre-tabla')
+      const nombre_tabla = $(this).attr('data-nombre-tabla')
 
-      obtener_informacion_una_tabla(nameTable, $(this))
+      obtener_informacion_una_tabla(nombre_tabla, $(this))
     }
   })
 }
@@ -176,12 +177,12 @@ const enviar_formulario = (tabla) => {
     inputs.each(function () {
       formData[$(this).attr('name')] = $(this).val()
     })
-    
+
     // Obtiene los valores de los selects
     selects.each(function () {
       formData[$(this).attr('name')] = $(this).val()
     })
-    
+
     // Obtiene los valores de los textareas
     textarea.each(function () {
       formData[$(this).attr('name')] = $(this).val()
@@ -216,7 +217,7 @@ const actualizar_informacion_tabla_base_datos = (tabla, formData, inputs, select
       selects.each(function () {
         $(this).val('')
       })
-      
+
       // Refresca la informacion de las tablas, con los nuevos campos
       listar_todas_tablas()
     },
@@ -249,7 +250,7 @@ const buscar_informacion_base_datos = (tabla, buscar) => {
 
       // Itera la respuesta
       const filas = res.map((item) => {
-        
+
         // Variable que concatena las th de la tabla
         let fila = ''
 
@@ -327,13 +328,16 @@ const añadir_eventos_tabla_botones = (tabla, res) => {
     $(`#actualizar__${tabla}-${item.id ?? item.cc}`).on('click', () => {
       document.getElementById(`dialog__${tabla}`).showModal()
 
+      console.log(tabla, res)
+
+
       // Obtiene los elementos de los formularios
       const button = $(`#form__${tabla} button`)
       const inputs = $(`#form__${tabla} input`)
       const selects = $(`#form__${tabla} select`)
 
       // Agrega los actributos para indicar que se va a actualizar esa fila
-      
+
       button.attr('id', `${item.id ?? item.cc}`)
       button.attr('data-actualizar', true)
       button.html(`Actualizar ${capitalice(tabla)}`)
