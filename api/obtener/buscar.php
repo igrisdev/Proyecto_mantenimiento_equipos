@@ -1,6 +1,6 @@
 <?php
 
-require("../../db/database.php");
+require("../../db/base_de_datos.php");
 
 $conn = connection();
 

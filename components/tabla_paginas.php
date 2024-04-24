@@ -3,6 +3,13 @@
 // array con información de las tablas
 require('./lib/array_informacion_tablas.php');
 
+if (!isset($_GET['tabla'])) {
+  echo 'No hay tabla';
+  return;
+}
+
+$t = $_GET['tabla'];
+
 ?>
 
 <main class="flex flex-col min-h-screen gap-6 max-w-screen-2xl mx-auto px-2 2xl:p-0 2xl:pb-10 pb-10">
@@ -20,28 +27,30 @@ require('./lib/array_informacion_tablas.php');
 
   <!-- sección de todas las tablas -->
   <?php foreach ($tablas as $tabla) : ?>
-    <section>
-      <h3 class="mb-2">Tabla de <?= $tabla['nombre'] ?></h3>
-      <div class="relative overflow-x-auto sm:rounded-lg">
-        <table class="w-full text-sm text-left text-gray-500">
-          <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-            <tr>
-              <?php foreach ($tabla['columnas'] as $columna) : ?>
-                <th scope="col" class="px-6 py-3">
-                  <?= $columna ?>
-                </th>
-              <?php endforeach; ?>
+    <?php if ($tabla['id'] === $t) : ?>
+      <section>
+        <h3 class="mb-2">Tabla de <?= $tabla['nombre'] ?></h3>
+        <div class="relative overflow-x-auto sm:rounded-lg">
+          <table class="w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+              <tr>
+                <?php foreach ($tabla['columnas'] as $columna) : ?>
+                  <th scope="col" class="px-6 py-3">
+                    <?= $columna ?>
+                  </th>
+                <?php endforeach; ?>
 
-              <th scope="col" class="px-6 py-3">
-                Acciones
-              </th>
-            </tr>
-          </thead>
-          <tbody id="containerRows__<?= $tabla['id'] ?>">
-          </tbody>
-        </table>
-      </div>
-    </section>
+                <th scope="col" class="px-6 py-3">
+                  Acciones
+                </th>
+              </tr>
+            </thead>
+            <tbody id="containerRows__<?= $tabla['id'] ?>">
+            </tbody>
+          </table>
+        </div>
+      </section>
+    <?php endif; ?>
   <?php endforeach; ?>
 </main>
 

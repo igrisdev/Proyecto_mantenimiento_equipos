@@ -1,5 +1,6 @@
 <?php
 
+// Array de las tablas a pintar en pantalla con sus columnas
 $tablas = [
   ['nombre' => 'Sedes', 'columnas' => ['Id', 'Nombre'], 'id' => 'sedes'],
   ['nombre' => 'Salas', 'columnas' => ['Id', 'Nombre', 'Sede'], 'id' => 'salas'],

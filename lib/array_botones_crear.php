@@ -1,6 +1,6 @@
 <?php
 
-// array que sirve para agregar o quitar un botón de crear
+// Array que sirve para agregar o quitar un botón de crear
 $navCruds = [
   ['label' => 'Sedes', 'id' => 'sedes'],
   ['label' => 'Salas', 'id' => 'salas'],

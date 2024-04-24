@@ -5,7 +5,7 @@
 <?php require("components/ui/cruds.php") ?>
 
 <!-- todas las tablas -->
-<?php require("components/todas_las_tablas.php") ?>
+<?php require("components/tabla_paginas.php") ?>
 
 <!-- pie de pagina -->
 <?php require("./components/pie_pagina.php") ?>

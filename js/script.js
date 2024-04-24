@@ -43,7 +43,7 @@ const searchAjax = (tabla, buscar) => {
                       <button type="submit" id="eliminar__${tabla}-${
             item.id ?? item.cc
           }" class="font-medium text-red-600 hover:underline">Eliminar</button>
-                      <a href='details_equipos.php?tabla=mantenimientos&id=${
+                      <a href='detalles_equipos.php?tabla=mantenimientos&id=${
                         item.id
                       }' type="submit" id="eliminar__${tabla}-${
             item.id ?? item.cc
@@ -145,7 +145,7 @@ const getDataAjax = (tabla) => {
                       <button type="submit" id="eliminar__${tabla}-${
               item.id ?? item.cc
             }" class="font-medium text-red-600 hover:underline">Eliminar</button>
-                      <a href='details_equipos.php?tabla=mantenimientos&id=${
+                      <a href='detalles_equipos.php?tabla=mantenimientos&id=${
                         item.id
                       }' type="submit" id="eliminar__${tabla}-${
               item.id ?? item.cc
@@ -275,7 +275,7 @@ const obtenerDetallesEquipo = (tabla, id) => {
                       <button type="submit" id="eliminar__${tabla}-${
               item.id ?? item.cc
             }" class="font-medium text-red-600 hover:underline">Eliminar</button>
-                      <a href='details_equipos.php?table=${tabla}&id=${
+                      <a href='detalles_equipos.php?table=${tabla}&id=${
               item.id
             }' type="submit" id="eliminar__${tabla}-${
               item.id ?? item.cc

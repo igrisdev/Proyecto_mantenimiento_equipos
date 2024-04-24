@@ -1,18 +1,12 @@
 <?php
 
-require('./lib/objetoInfoTablas.php');
-
-if (!isset($_GET['tabla'])) {
-  echo 'No hay tabla';
-  return;
-}
+require('./lib/array_informacion_tablas.php');
 
 if (!isset($_GET['id'])) {
   echo 'No hay id';
   return;
 }
 
-$t = $_GET['tabla'];
 $id = $_GET['id'];
 
 ?>
