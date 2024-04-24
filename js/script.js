@@ -236,6 +236,45 @@ const añadir_th_tabla = (text) => {
             </th>`
 }
 
+const añadir_filas = (tabla, res) => {
+  return res.map((item) => {
+
+    // Variable que concatena las th de la tabla
+    let fila = ''
+
+    // Itera las columnas para agregar los th con su valor
+    for (const key in item) {
+      fila += añadir_th_tabla(item[key])
+    }
+
+    // Agregando los botones de acciones que son eliminar y actualizar para todas las tablas que no se llaman equipos
+    if (tabla !== 'equipos') {
+      fila += `<td class="px-6 py-4 flex flex-wrap gap-x-6 gap-y-2">
+                  <button type="submit" id="actualizar__${tabla}-${item.id ?? item.cc
+        }" class="font-medium text-blue-600 hover:underline">Actualizar</button>
+                  <button type="submit" id="eliminar__${tabla}-${item.id ?? item.cc
+        }" class="font-medium text-red-600 hover:underline">Eliminar</button>
+                  </td>`
+    }
+
+    // Agregando los botones de acciones que son eliminar, actualizar y ver detalles para la tabla equipos
+    if (tabla === 'equipos') {
+      fila += `<td class="px-6 py-4 flex flex-wrap gap-x-6 gap-y-2">
+                  <button type="submit" id="actualizar__${tabla}-${item.id ?? item.cc
+        }" class="font-medium text-blue-600 hover:underline">Actualizar</button>
+                  <button type="submit" id="eliminar__${tabla}-${item.id ?? item.cc
+        }" class="font-medium text-red-600 hover:underline">Eliminar</button>
+                  <a href='detalles_equipos.php?tabla=mantenimientos&id=${item.id
+        }' type="submit" id="eliminar__${tabla}-${item.id ?? item.cc
+        }" class="font-medium text-green-600 hover:underline">Ver Detalles</a>
+                  </td>`
+    }
+
+    // Devuelve toda la fila 
+    return `<tr class="bg-white border-b hover:bg-gray-50">${fila}</tr>`
+  })
+}
+
 // Busca la informacion en la base de datos y los filtra por tabla
 const buscar_informacion_base_datos = (tabla, buscar) => {
   $.ajax({
@@ -249,42 +288,7 @@ const buscar_informacion_base_datos = (tabla, buscar) => {
       const res = JSON.parse(data)
 
       // Itera la respuesta
-      const filas = res.map((item) => {
-
-        // Variable que concatena las th de la tabla
-        let fila = ''
-
-        // Itera las columnas para agregar los th con su valor
-        for (const key in item) {
-          fila += añadir_th_tabla(item[key])
-        }
-
-        // Agregando los botones de acciones que son eliminar y actualizar para todas las tablas que no se llaman equipos
-        if (tabla !== 'equipos') {
-          fila += `<td class="px-6 py-4 flex flex-wrap gap-x-6 gap-y-2">
-                      <button type="submit" id="actualizar__${tabla}-${item.id ?? item.cc
-            }" class="font-medium text-blue-600 hover:underline">Actualizar</button>
-                      <button type="submit" id="eliminar__${tabla}-${item.id ?? item.cc
-            }" class="font-medium text-red-600 hover:underline">Eliminar</button>
-                      </td>`
-        }
-
-        // Agregando los botones de acciones que son eliminar, actualizar y ver detalles para la tabla equipos
-        if (tabla === 'equipos') {
-          fila += `<td class="px-6 py-4 flex flex-wrap gap-x-6 gap-y-2">
-                      <button type="submit" id="actualizar__${tabla}-${item.id ?? item.cc
-            }" class="font-medium text-blue-600 hover:underline">Actualizar</button>
-                      <button type="submit" id="eliminar__${tabla}-${item.id ?? item.cc
-            }" class="font-medium text-red-600 hover:underline">Eliminar</button>
-                      <a href='detalles_equipos.php?tabla=mantenimientos&id=${item.id
-            }' type="submit" id="eliminar__${tabla}-${item.id ?? item.cc
-            }" class="font-medium text-green-600 hover:underline">Ver Detalles</a>
-                      </td>`
-        }
-
-        // Devuelve toda la fila 
-        return `<tr class="bg-white border-b hover:bg-gray-50">${fila}</tr>`
-      })
+      const filas = añadir_filas(tabla, res)
 
       // Obtiene el elemento donde se van insertar las filas
       const elemento_contenedor_filas = $(`#contenedor_filas_${tabla}`)
@@ -330,7 +334,6 @@ const añadir_eventos_tabla_botones = (tabla, res) => {
 
       console.log(tabla, res)
 
-
       // Obtiene los elementos de los formularios
       const button = $(`#form__${tabla} button`)
       const inputs = $(`#form__${tabla} input`)
@@ -370,38 +373,7 @@ const obtener_informacion_todas_tablas = (tabla) => {
     success: (data) => {
       const res = JSON.parse(data)
 
-      const filas = res
-        .map((item) => {
-          let fila = ''
-
-          for (const key in item) {
-            fila += añadir_th_tabla(item[key])
-          }
-
-          if (tabla !== 'equipos') {
-            fila += `<td class="px-6 py-4 flex flex-wrap gap-x-6 gap-y-2">
-                      <button type="submit" id="actualizar__${tabla}-${item.id ?? item.cc
-              }" class="font-medium text-blue-600 hover:underline">Actualizar</button>
-                      <button type="submit" id="eliminar__${tabla}-${item.id ?? item.cc
-              }" class="font-medium text-red-600 hover:underline">Eliminar</button>
-                      </td>`
-          }
-
-          if (tabla === 'equipos') {
-            fila += `<td class="px-6 py-4 flex flex-wrap gap-x-6 gap-y-2">
-                      <button type="submit" id="actualizar__${tabla}-${item.id ?? item.cc
-              }" class="font-medium text-blue-600 hover:underline">Actualizar</button>
-                      <button type="submit" id="eliminar__${tabla}-${item.id ?? item.cc
-              }" class="font-medium text-red-600 hover:underline">Eliminar</button>
-                      <a href='detalles_equipos.php?tabla=mantenimientos&id=${item.id
-              }' type="submit" id="eliminar__${tabla}-${item.id ?? item.cc
-              }" class="font-medium text-green-600 hover:underline">Ver Detalles</a>
-                      </td>`
-          }
-
-          return `<tr class="bg-white border-b hover:bg-gray-50">${fila}</tr>`
-        })
-        .join('')
+      const filas = añadir_filas(tabla, res).join('')
 
       $(`#contenedor_filas_${tabla}`).html(filas)
 
@@ -463,38 +435,7 @@ const obtener_detalles_equipo = (tabla, id) => {
     success: (data) => {
       const res = JSON.parse(data)
 
-      const filas = res
-        .map((item) => {
-          let fila = ''
-
-          for (const key in item) {
-            fila += añadir_th_tabla(item[key])
-          }
-
-          if (tabla !== 'equipos') {
-            fila += `<td class="px-6 py-4 flex flex-wrap gap-x-6 gap-y-2">
-                      <button type="submit" id="actualizar__${tabla}-${item.id ?? item.cc
-              }" class="font-medium text-blue-600 hover:underline">Actualizar</button>
-                      <button type="submit" id="eliminar__${tabla}-${item.id ?? item.cc
-              }" class="font-medium text-red-600 hover:underline">Eliminar</button>
-                      </td>`
-          }
-
-          if (tabla === 'equipos') {
-            fila += `<td class="px-6 py-4 flex flex-wrap gap-x-6 gap-y-2">
-                      <button type="submit" id="actualizar__${tabla}-${item.id ?? item.cc
-              }" class="font-medium text-blue-600 hover:underline">Actualizar</button>
-                      <button type="submit" id="eliminar__${tabla}-${item.id ?? item.cc
-              }" class="font-medium text-red-600 hover:underline">Eliminar</button>
-                      <a href='detalles_equipos.php?table=${tabla}&id=${item.id
-              }' type="submit" id="eliminar__${tabla}-${item.id ?? item.cc
-              }" class="font-medium text-green-600 hover:underline">Ver Detalles</a>
-                      </td>`
-          }
-
-          return `<tr class="bg-white border-b hover:bg-gray-50">${fila}</tr>`
-        })
-        .join('')
+      const filas = añadir_filas(tabla, res).join('')
 
       $(`#contenedorFilasTablaUnica_${tabla}`).html(filas)
 
