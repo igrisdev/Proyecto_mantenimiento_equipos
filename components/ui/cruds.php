@@ -131,7 +131,7 @@ require('./lib/objetoCruds.php');
           $(this).val('');
         })
 
-        // función declarada en main.php
+        // función declarada en todas_las_tablas.php
         allTables()
       },
       error: (error) => {
