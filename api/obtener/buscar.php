@@ -26,7 +26,7 @@ if ($tabla === 'monitores') {
 }
 
 if ($tabla === 'equipos') {
-  $query = "SELECT * FROM `$tabla` WHERE `tipo` LIKE '%$buscar%'";
+  $query = "SELECT equipos.id, equipos.codigo, equipos.tipo, equipos.idMarca, salas.id as idSala, salas.idSede, equipos.fecha_ingreso as 'fecha_ingreso', IF(mantenimientos.fecha_inicio IS NOT NULL, mantenimientos.fecha_inicio, '') as 'ultimo mantenimiento', if(mantenimientos.fecha_inicio IS NOT NULL, DATE_ADD(mantenimientos.fecha_inicio, INTERVAL 6 MONTH), DATE_ADD(equipos.fecha_ingreso, INTERVAL 6 MONTH)) as 'siguiente mantenimiento', equipos.estado FROM equipos LEFT JOIN salas ON equipos.idSala = salas.id LEFT JOIN mantenimientos ON equipos.id = mantenimientos.idEquipo WHERE equipos.id LIKE '%$buscar%' OR equipos.codigo LIKE '%$buscar%' OR equipos.tipo LIKE '%$buscar%' OR equipos.idMarca LIKE '%$buscar%'";
 }
 
 if ($tabla === 'mantenimientos') {
