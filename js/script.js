@@ -50,7 +50,7 @@ const añadiendo_informacion_formularios_select = (res, selects) => {
   })
 }
 
-// Funcion que abre el dialog correspondiente a la tabla dada
+// Función que abre el dialog correspondiente a la tabla dada
 const desplegar_dialog = (tabla) => {
   $(`#button__open-${tabla}`).on('click', () => {
     document.getElementById(`dialog__${tabla}`).showModal()
@@ -86,12 +86,12 @@ const cerrar_dialog = (tabla) => {
     button.removeAttr('data-actualizar')
     button.html(`Crear ${capitalice(tabla)}`)
 
-    // Vacia los inputs
+    // Vacía los inputs
     inputs.each(function () {
       $(this).val('')
     })
 
-    // Vacia los selects
+    // Vacía los selects
     selects.each(function () {
       $(this).val('')
     })
@@ -99,7 +99,13 @@ const cerrar_dialog = (tabla) => {
 }
 
 // Inserta la informacion en la base de datos de cada formulario
-const crear_informacion_base_datos = (id, formData, inputs, selects, textarea) => {
+const crear_informacion_base_datos = (
+  id,
+  formData,
+  inputs,
+  selects,
+  textarea
+) => {
   console.log(formData)
   $.ajax({
     url: `/Proyecto_mantenimiento_equipos/api/crear/crear__${id}.php`,
@@ -130,7 +136,7 @@ const crear_informacion_base_datos = (id, formData, inputs, selects, textarea) =
   })
 }
 
-// Envia el formulario y se crea o actualiza una informacion en la tabla correspondiente 
+// Envía el formulario y se crea o actualiza una informacion en la tabla correspondiente
 // de la base de datos
 const enviar_formulario = (tabla) => {
   // Obtiene el formulario de la tabla dada
@@ -183,7 +189,7 @@ const enviar_formulario = (tabla) => {
       formData[$(this).attr('name')] = $(this).val()
     })
 
-    // Obtiene los valores de los textareas
+    // Obtiene los valores de los textarea
     textarea.each(function () {
       formData[$(this).attr('name')] = $(this).val()
     })
@@ -193,7 +199,12 @@ const enviar_formulario = (tabla) => {
 }
 
 // Actualizar informacion en la base de datos de una fila con su id
-const actualizar_informacion_tabla_base_datos = (tabla, formData, inputs, selects) => {
+const actualizar_informacion_tabla_base_datos = (
+  tabla,
+  formData,
+  inputs,
+  selects
+) => {
   $.ajax({
     url: `/Proyecto_mantenimiento_equipos/api/actualizar/actualizar__${tabla}.php`,
     data: formData,
@@ -238,7 +249,6 @@ const añadir_th_tabla = (text) => {
 
 const añadir_filas = (tabla, res) => {
   return res.map((item) => {
-
     // Variable que concatena las th de la tabla
     let fila = ''
 
@@ -250,27 +260,33 @@ const añadir_filas = (tabla, res) => {
     // Agregando los botones de acciones que son eliminar y actualizar para todas las tablas que no se llaman equipos
     if (tabla !== 'equipos') {
       fila += `<td class="px-6 py-4 flex flex-wrap gap-x-6 gap-y-2">
-                  <button type="submit" id="actualizar__${tabla}-${item.id ?? item.cc
-        }" class="font-medium text-blue-600 hover:underline">Actualizar</button>
-                  <button type="submit" id="eliminar__${tabla}-${item.id ?? item.cc
-        }" class="font-medium text-red-600 hover:underline">Eliminar</button>
+                  <button type="submit" id="actualizar__${tabla}-${
+        item.id ?? item.cc
+      }" class="font-medium text-blue-600 hover:underline">Actualizar</button>
+                  <button type="submit" id="eliminar__${tabla}-${
+        item.id ?? item.cc
+      }" class="font-medium text-red-600 hover:underline">Eliminar</button>
                   </td>`
     }
 
     // Agregando los botones de acciones que son eliminar, actualizar y ver detalles para la tabla equipos
     if (tabla === 'equipos') {
       fila += `<td class="px-6 py-4 flex flex-wrap gap-x-6 gap-y-2">
-                  <button type="submit" id="actualizar__${tabla}-${item.id ?? item.cc
-        }" class="font-medium text-blue-600 hover:underline">Actualizar</button>
-                  <button type="submit" id="eliminar__${tabla}-${item.id ?? item.cc
-        }" class="font-medium text-red-600 hover:underline">Eliminar</button>
-                  <a href='detalles_equipos.php?tabla=mantenimientos&id=${item.id
-        }' type="submit" id="eliminar__${tabla}-${item.id ?? item.cc
-        }" class="font-medium text-green-600 hover:underline">Ver Detalles</a>
+                  <button type="submit" id="actualizar__${tabla}-${
+        item.id ?? item.cc
+      }" class="font-medium text-blue-600 hover:underline">Actualizar</button>
+                  <button type="submit" id="eliminar__${tabla}-${
+        item.id ?? item.cc
+      }" class="font-medium text-red-600 hover:underline">Eliminar</button>
+                  <a href='detalles_equipos.php?tabla=mantenimientos&id=${
+                    item.id
+                  }' type="submit" id="eliminar__${tabla}-${
+        item.id ?? item.cc
+      }" class="font-medium text-green-600 hover:underline">Ver Detalles</a>
                   </td>`
     }
 
-    // Devuelve toda la fila 
+    // Devuelve toda la fila
     return `<tr class="bg-white border-b hover:bg-gray-50">${fila}</tr>`
   })
 }
@@ -297,7 +313,10 @@ const buscar_informacion_base_datos = (tabla, buscar) => {
       elemento_contenedor_filas.html(filas)
 
       // Obtenemos el elemento padre, para saber el nombre de la tabla
-      const elemento_padre = elemento_contenedor_filas.parent().parent().parent()
+      const elemento_padre = elemento_contenedor_filas
+        .parent()
+        .parent()
+        .parent()
 
       // Ocultamos la tabla si no tiene informacion
       if (filas.length == 0) {
@@ -314,8 +333,7 @@ const buscar_informacion_base_datos = (tabla, buscar) => {
   })
 }
 
-
-// Hace la primera letra mayuscula
+// Hace la primera letra mayúscula
 const capitalice = (text) => {
   return text.charAt(0).toUpperCase() + text.slice(1)
 }
@@ -339,7 +357,7 @@ const añadir_eventos_tabla_botones = (tabla, res) => {
       const inputs = $(`#form__${tabla} input`)
       const selects = $(`#form__${tabla} select`)
 
-      // Agrega los actributos para indicar que se va a actualizar esa fila
+      // Agrega los atributos para indicar que se va a actualizar esa fila
 
       button.attr('id', `${item.id ?? item.cc}`)
       button.attr('data-actualizar', true)
@@ -362,7 +380,7 @@ const añadir_eventos_tabla_botones = (tabla, res) => {
   })
 }
 
-// Optiene la informacion de todas las tablas en la base de datos
+// Obtiene la informacion de todas las tablas en la base de datos
 const obtener_informacion_todas_tablas = (tabla) => {
   $.ajax({
     url: `/Proyecto_mantenimiento_equipos/api/obtener/obtener__tablas.php`,
