@@ -57,7 +57,7 @@ const desplegar_dialog = (tabla) => {
   })
 
   // Oculta de la tabla mantenimientos el campo de fecha final al momento de crear
-  const idActualizar = $('#label_actualizar_mantenimiento')
+  const idActualizar = $('.label_actualizar_mantenimiento')
   idActualizar.hide()
 
   // Obtiene los selects de la tabla correspondiente
@@ -86,7 +86,7 @@ const cerrar_dialog = (tabla) => {
     const selects = $(`#form__${tabla} select`)
 
     // Oculta de la tabla mantenimientos el campo de fecha final al momento de crear
-    const idActualizar = $('#label_actualizar_mantenimiento')
+    const idActualizar = $('.label_actualizar_mantenimiento')
     idActualizar.hide()
 
     // eliminar los atributos que permiten saber si se esta actualizando una tarea
@@ -106,9 +106,24 @@ const cerrar_dialog = (tabla) => {
   })
 }
 
+// Limpiar los campos selects, inputs, textarea
+const limpiar_campos = (inputs, selects, textarea) => {
+  inputs.each(function () {
+    $(this).val('')
+  })
+
+  selects.each(function () {
+    $(this).val('')
+  })
+
+  textarea.each(function () {
+    $(this).val('')
+  })
+}
+
 // Inserta la informacion en la base de datos de cada formulario
 const crear_informacion_base_datos = (
-  id,
+  tabla,
   formData,
   inputs,
   selects,
@@ -116,27 +131,18 @@ const crear_informacion_base_datos = (
 ) => {
   console.log(formData)
   $.ajax({
-    url: `/Proyecto_mantenimiento_equipos/api/crear/crear__${id}.php`,
+    url: `/Proyecto_mantenimiento_equipos/api/crear/crear__${tabla}.php`,
     data: formData,
     method: 'POST',
     success: (data) => {
       alert(data)
 
-      document.getElementById(`dialog__${id}`).close()
+      document.getElementById(`dialog__${tabla}`).close()
 
-      inputs.each(function () {
-        $(this).val('')
-      })
-
-      selects.each(function () {
-        $(this).val('')
-      })
-
-      textarea.each(function () {
-        $(this).val('')
-      })
+      limpiar_campos(inputs, selects, textarea)
 
       listar_todas_tablas()
+      // desplegar_dialog(tabla)
     },
     error: (error) => {
       alert(error)
@@ -178,10 +184,21 @@ const enviar_formulario = (tabla) => {
         formData[$(this).attr('name')] = $(this).val()
       })
 
+      // Pone los valores al os textarea
+      textarea.each(function () {
+        formData[$(this).attr('name')] = $(this).val()
+      })
+
       // agrega el id
       formData['id'] = isId
 
-      actualizar_informacion_tabla_base_datos(tabla, formData, inputs, selects)
+      actualizar_informacion_tabla_base_datos(
+        tabla,
+        formData,
+        inputs,
+        selects,
+        textarea
+      )
       return
     }
 
@@ -211,7 +228,8 @@ const actualizar_informacion_tabla_base_datos = (
   tabla,
   formData,
   inputs,
-  selects
+  selects,
+  textarea
 ) => {
   $.ajax({
     url: `/Proyecto_mantenimiento_equipos/api/actualizar/actualizar__${tabla}.php`,
@@ -229,17 +247,11 @@ const actualizar_informacion_tabla_base_datos = (
       button.html(`Crear ${capitalice(tabla)}`)
 
       // Oculta de la tabla mantenimientos el campo de fecha final al momento de crear
-      const idActualizar = $('#label_actualizar_mantenimiento')
+      const idActualizar = $('.label_actualizar_mantenimiento')
       idActualizar.hide()
 
       // Limpia los campos
-      inputs.each(function () {
-        $(this).val('')
-      })
-
-      selects.each(function () {
-        $(this).val('')
-      })
+      limpiar_campos(inputs, selects, textarea)
 
       // Refresca la informacion de las tablas, con los nuevos campos
       listar_todas_tablas()
@@ -371,7 +383,7 @@ const añadir_eventos_tabla_botones = (tabla, res) => {
       const textarea = $(`#form__${tabla} textarea`)
 
       // Agregar campo de fecha_fin en la tabla de mantenimientos
-      const idActualizar = $('#label_actualizar_mantenimiento')
+      const idActualizar = $('.label_actualizar_mantenimiento')
       idActualizar.show()
 
       // Agrega los atributos para indicar que se va a actualizar esa fila
