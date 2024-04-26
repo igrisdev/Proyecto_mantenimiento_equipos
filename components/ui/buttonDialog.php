@@ -141,11 +141,20 @@ class ButtonDialog
           <input require placeholder='Bicentenario ...' name='fecha_inicio' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='date'>
         </label>
 
+        <label class='flex flex-col label_actualizar_mantenimiento'>
+          <span class='text-white'>Fecha de Fin</span>
+          <input placeholder='Bicentenario ...' name='fecha_fin' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' type='date'>
+        </label>
+
         <label class='flex flex-col'>
-          <span class='text-white'>Problema</span>
+          <span class='text-white'>Problema (opcional)</span>
           <textarea placeholder='Feedback' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' name='problema'></textarea>
         </label>
 
+        <label class='flex flex-col label_actualizar_mantenimiento'>
+          <span class='text-white'>Descripción</span>
+          <textarea placeholder='Feedback' class='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150' name='descripcion'></textarea>
+        </label>
 
         <label class='flex flex-col'>
           <span class='text-white'>Monitor</span>
