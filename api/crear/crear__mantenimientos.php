@@ -15,6 +15,7 @@ if (!isset($_POST['tipo_mantenimiento'])) {
   $conn->close();
   return;
 }
+
 if (!isset($_POST['fecha_inicio'])) {
   echo "Falta la Fecha de Inicio";
   $conn->close();
@@ -41,7 +42,7 @@ $quienCC = $_POST['quienCC'];
 
 $query = "INSERT INTO `mantenimientos` (`id`, `tipo_mantenimiento`, `fecha_inicio`, `problema`, `idEquipo`, `quienCC`) VALUES (NULL, '$tipo_mantenimiento', '$fecha_inicio', '$problema', '$idEquipo', '$quienCC');";
 
-$query2 = "UPDATE `equipos` SET  `estado` = '1' WHERE `equipos`.`id` = $idEquipo;";
+$query2 = "UPDATE `equipos` SET  `estado` = '0' WHERE `equipos`.`id` = $idEquipo;";
 
 try {
   $conn->query($query);
