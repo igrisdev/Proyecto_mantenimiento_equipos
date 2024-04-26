@@ -43,7 +43,7 @@ const añadiendo_informacion_formularios_select = (res, selects) => {
       }
 
       // Si el estado esta en mantenimiento es 0
-      if (item.estado == '0') {
+      if (item.estado == '1') {
         $(this).append(`<option value="${item.id}">${item.codigo}</option>`)
       }
     }
@@ -55,6 +55,10 @@ const desplegar_dialog = (tabla) => {
   $(`#button__open-${tabla}`).on('click', () => {
     document.getElementById(`dialog__${tabla}`).showModal()
   })
+
+  // Oculta de la tabla mantenimientos el campo de fecha final al momento de crear
+  const idActualizar = $('#label_actualizar_mantenimiento')
+  idActualizar.hide()
 
   // Obtiene los selects de la tabla correspondiente
   const selects = $(`#form__${tabla} select`)
@@ -80,6 +84,10 @@ const cerrar_dialog = (tabla) => {
     const button = $(`#form__${tabla} button`)
     const inputs = $(`#form__${tabla} input`)
     const selects = $(`#form__${tabla} select`)
+
+    // Oculta de la tabla mantenimientos el campo de fecha final al momento de crear
+    const idActualizar = $('#label_actualizar_mantenimiento')
+    idActualizar.hide()
 
     // eliminar los atributos que permiten saber si se esta actualizando una tarea
     button.removeAttr('id')
@@ -220,6 +228,10 @@ const actualizar_informacion_tabla_base_datos = (
       button.removeAttr('data-actualizar')
       button.html(`Crear ${capitalice(tabla)}`)
 
+      // Oculta de la tabla mantenimientos el campo de fecha final al momento de crear
+      const idActualizar = $('#label_actualizar_mantenimiento')
+      idActualizar.hide()
+
       // Limpia los campos
       inputs.each(function () {
         $(this).val('')
@@ -356,9 +368,13 @@ const añadir_eventos_tabla_botones = (tabla, res) => {
       const button = $(`#form__${tabla} button`)
       const inputs = $(`#form__${tabla} input`)
       const selects = $(`#form__${tabla} select`)
+      const textarea = $(`#form__${tabla} textarea`)
+
+      // Agregar campo de fecha_fin en la tabla de mantenimientos
+      const idActualizar = $('#label_actualizar_mantenimiento')
+      idActualizar.show()
 
       // Agrega los atributos para indicar que se va a actualizar esa fila
-
       button.attr('id', `${item.id ?? item.cc}`)
       button.attr('data-actualizar', true)
       button.html(`Actualizar ${capitalice(tabla)}`)
@@ -372,6 +388,12 @@ const añadir_eventos_tabla_botones = (tabla, res) => {
 
       // Plasma la informacion en el formulario de los selects
       selects.each(function () {
+        if ($(this).attr('name') in item) {
+          $(this).val(item[$(this).attr('name')])
+        }
+      })
+
+      textarea.each(function () {
         if ($(this).attr('name') in item) {
           $(this).val(item[$(this).attr('name')])
         }
