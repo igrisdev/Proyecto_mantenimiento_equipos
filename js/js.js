@@ -19,7 +19,6 @@ const obtener_informacion_una_tabla = (nombre_tabla, selects) => {
     method: 'POST',
     success: (data) => {
       const res = JSON.parse(data)
-      console.log(nombre_tabla, res)
 
       añadiendo_informacion_formularios_select(res, selects)
     },
@@ -54,6 +53,24 @@ const añadiendo_informacion_formularios_select = (res, selects) => {
 const desplegar_dialog = (tabla) => {
   $(`#button__open-${tabla}`).on('click', () => {
     document.getElementById(`dialog__${tabla}`).showModal()
+
+    // Oculta de la tabla mantenimientos el campo de fecha final al momento de crear
+    const idActualizar = $('.label_actualizar_mantenimiento')
+    idActualizar.hide()
+
+    // Obtiene los selects de la tabla correspondiente
+    const selects = $(`#form__${tabla} select`)
+
+    // Recorre los selects y obtiene el nombre de la tabla de cada select para hacer un llamado
+    // a la base de datos y pintar en los selects los valores adecuados
+    selects.each(function () {
+      if ($(this).attr('data-nombre-tabla')) {
+        // Obtiene el nombre de la base de datos de el select que esta guardado en un atributo data-nombre-tabla
+        const nombre_tabla = $(this).attr('data-nombre-tabla')
+
+        obtener_informacion_una_tabla(nombre_tabla, $(this))
+      }
+    })
   })
 
   // Oculta de la tabla mantenimientos el campo de fecha final al momento de crear
@@ -129,7 +146,6 @@ const crear_informacion_base_datos = (
   selects,
   textarea
 ) => {
-  console.log(formData)
   $.ajax({
     url: `/Proyecto_mantenimiento_equipos/api/crear/crear__${tabla}.php`,
     data: formData,
@@ -142,7 +158,6 @@ const crear_informacion_base_datos = (
       limpiar_campos(inputs, selects, textarea)
 
       listar_todas_tablas()
-      // desplegar_dialog(tabla)
     },
     error: (error) => {
       alert(error)
@@ -212,6 +227,13 @@ const enviar_formulario = (tabla) => {
     // Obtiene los valores de los selects
     selects.each(function () {
       formData[$(this).attr('name')] = $(this).val()
+
+      if ($(this).attr('data-nombre-tabla')) {
+        // Obtiene el nombre de la base de datos de el select que esta guardado en un atributo data-nombre-tabla
+        const nombre_tabla = $(this).attr('data-nombre-tabla')
+
+        obtener_informacion_una_tabla(nombre_tabla, $(this))
+      }
     })
 
     // Obtiene los valores de los textarea
@@ -373,8 +395,6 @@ const añadir_eventos_tabla_botones = (tabla, res) => {
     // Abre el dialog y plasma la informacion de la fila para actualizarla
     $(`#actualizar__${tabla}-${item.id ?? item.cc}`).on('click', () => {
       document.getElementById(`dialog__${tabla}`).showModal()
-
-      console.log(tabla, res)
 
       // Obtiene los elementos de los formularios
       const button = $(`#form__${tabla} button`)
