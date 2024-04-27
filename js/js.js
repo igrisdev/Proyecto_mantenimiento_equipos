@@ -34,16 +34,24 @@ const añadiendo_informacion_formularios_select = (res, selects) => {
     $(this).empty()
     $(this).append(`<option value="" selected require>Seleccione</option>`)
     for (let item of res) {
-      // Si el estado esta en funcionamiento es 1
       if (!item.estado) {
         $(this).append(
           `<option value="${item.id ?? item.cc}">${item.nombre}</option>`
         )
       }
 
-      // Si el estado esta en mantenimiento es 0
+      // Si el estado esta en mantenimiento es 1
       if (item.estado == '1') {
-        $(this).append(`<option value="${item.id}">${item.codigo}</option>`)
+        $(this).append(
+          `<option value="${item.id}">${item.codigo} - Funcionando</option>`
+        )
+      }
+
+      // Si el estado esta en mantenimiento es 0
+      if (item.estado == '0') {
+        $(this).append(
+          `<option value="${item.id}">${item.codigo} - Mantenimiento</option>`
+        )
       }
     }
   })
@@ -242,6 +250,10 @@ const enviar_formulario = (tabla) => {
     })
 
     crear_informacion_base_datos(tabla, formData, inputs, selects, textarea)
+
+    if (tabla == 'mantenimientos') {
+      location.reload()
+    }
   })
 }
 
