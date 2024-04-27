@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-04-2024 a las 08:20:58
+-- Tiempo de generación: 27-04-2024 a las 23:44:08
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -37,16 +37,6 @@ CREATE TABLE `equipos` (
   `estado` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `equipos`
---
-
-INSERT INTO `equipos` (`id`, `tipo`, `idMarca`, `idSala`, `codigo`, `fecha_ingreso`, `estado`) VALUES
-(2, 'portatil', 2, 1, 'cc', '2024-04-18', 0),
-(3, 'pc', 2, 2, 'dds', '2024-04-24', 1),
-(8, 'pc', 1, 2, 'man', '2024-04-26', 1),
-(11, 'portatil', 1, 1, 'nuevo', '2024-04-24', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -64,14 +54,6 @@ CREATE TABLE `mantenimientos` (
   `fecha_fin` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `mantenimientos`
---
-
-INSERT INTO `mantenimientos` (`id`, `tipo_mantenimiento`, `problema`, `descripcion`, `fecha_inicio`, `idEquipo`, `quienCC`, `fecha_fin`) VALUES
-(4, 'preventivo', '12sdsd', NULL, '2024-05-01', 2, 1212, NULL),
-(5, 'correctivo', 'ffd', NULL, '2024-04-25', 3, 13579, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -82,14 +64,6 @@ CREATE TABLE `marcas` (
   `id` int(11) NOT NULL,
   `nombre` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `marcas`
---
-
-INSERT INTO `marcas` (`id`, `nombre`) VALUES
-(1, 'Marca Xx'),
-(2, 'Marca Yy');
 
 -- --------------------------------------------------------
 
@@ -102,14 +76,6 @@ CREATE TABLE `monitores` (
   `nombre` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `monitores`
---
-
-INSERT INTO `monitores` (`cc`, `nombre`) VALUES
-(1212, 'f'),
-(13579, 'Pedrooo');
-
 -- --------------------------------------------------------
 
 --
@@ -121,14 +87,6 @@ CREATE TABLE `salas` (
   `nombre` varchar(60) DEFAULT NULL,
   `idSede` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `salas`
---
-
-INSERT INTO `salas` (`id`, `nombre`, `idSede`) VALUES
-(1, 'Salaa', 20),
-(2, 'Sala', 1);
 
 -- --------------------------------------------------------
 
@@ -146,9 +104,7 @@ CREATE TABLE `sedes` (
 --
 
 INSERT INTO `sedes` (`id`, `nombre`) VALUES
-(20, 'amigaad'),
-(23, 'df'),
-(1, 'Sedee');
+(1, 'Bicentenario');
 
 --
 -- Índices para tablas volcadas
@@ -209,31 +165,31 @@ ALTER TABLE `sedes`
 -- AUTO_INCREMENT de la tabla `equipos`
 --
 ALTER TABLE `equipos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `mantenimientos`
 --
 ALTER TABLE `mantenimientos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de la tabla `marcas`
 --
 ALTER TABLE `marcas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `salas`
 --
 ALTER TABLE `salas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `sedes`
 --
 ALTER TABLE `sedes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- Restricciones para tablas volcadas
